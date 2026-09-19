@@ -22,15 +22,15 @@
           fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
           colors: {
             night: {
-              900: '#070a10',
-              850: '#0b101b',
-              800: '#101726',
-              700: '#1b2640',
+              900: '#070c0a',
+              850: '#0b1310',
+              800: '#101a16',
+              700: '#1c2d27',
             },
             accent: {
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
             }
           }
         }
@@ -41,17 +41,17 @@
   <style>
     body {
       background-color: #070a10;
-      background-image: radial-gradient(circle at top, rgba(37, 99, 235, 0.12) 0%, transparent 60%);
+      background-image: radial-gradient(circle at top, rgba(16, 185, 129, 0.12) 0%, transparent 60%);
     }
   </style>
 </head>
 
-<body class="text-slate-100 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
+<body class="text-slate-100 min-h-screen flex flex-col selection:bg-emerald-600 selection:text-white">
 
   <!-- ЭКРАН АВТОРИЗАЦИИ (ПО УМОЛЧАНИЮ) -->
   <div id="auth-screen" class="min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-sm w-full bg-night-800 border border-blue-500/30 rounded-2xl p-6 shadow-2xl relative">
-      <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/40 text-accent-400 flex items-center justify-center mx-auto mb-4">
+    <div class="max-w-sm w-full bg-night-800 border border-emerald-500/30 rounded-2xl p-6 shadow-2xl relative">
+      <div class="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-accent-400 flex items-center justify-center mx-auto mb-4">
         <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
       </div>
 
@@ -61,7 +61,7 @@
       <form onsubmit="handleLogin(event)" class="space-y-4">
         <div>
           <label class="text-xs font-semibold text-slate-300 block mb-1.5">ПИН-код / Пароль:</label>
-          <input type="password" id="admin-pass" required placeholder="Введите пароль..." class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 font-mono tracking-widest"/>
+          <input type="password" id="admin-pass" required placeholder="Введите пароль..." class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500 font-mono tracking-widest"/>
           <div class="text-[10px] text-slate-500 mt-1">Пароль по умолчанию: <code class="text-accent-400">vladimir2026</code></div>
         </div>
 
@@ -69,7 +69,7 @@
           Неверный пароль доступа!
         </div>
 
-        <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
+        <button type="submit" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
           Войти в панель
         </button>
 
@@ -83,7 +83,7 @@
   <!-- ГЛАВНАЯ АДМИН-ПАНЕЛЬ (ПОСЛЕ ВХОДА) -->
   <div id="admin-dashboard" class="hidden min-h-screen flex flex-col">
     <!-- Верхний бар -->
-    <header class="bg-night-850 border-b border-blue-900/40 sticky top-0 z-30">
+    <header class="bg-night-850 border-b border-emerald-900/40 sticky top-0 z-30">
       <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <span class="material-symbols-outlined text-accent-400 text-2xl">construction</span>
@@ -94,7 +94,7 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <a href="index.html" target="_blank" class="flex items-center gap-1 text-xs text-accent-400 hover:text-white bg-night-800 px-3 py-1.5 rounded-lg border border-blue-900/60">
+          <a href="index.html" target="_blank" class="flex items-center gap-1 text-xs text-accent-400 hover:text-white bg-night-800 px-3 py-1.5 rounded-lg border border-emerald-900/60">
             <span class="material-symbols-outlined text-sm">open_in_new</span>
             <span>Открыть сайт</span>
           </a>
@@ -107,9 +107,9 @@
     </header>
 
     <!-- Навигация по вкладкам -->
-    <div class="bg-night-900 border-b border-blue-900/30">
+    <div class="bg-night-900 border-b border-emerald-900/30">
       <div class="max-w-5xl mx-auto px-4 flex gap-4">
-        <button onclick="switchTab('leads')" id="tab-btn-leads" class="tab-btn active py-3 border-b-2 border-blue-500 text-white text-xs font-bold flex items-center gap-1.5">
+        <button onclick="switchTab('leads')" id="tab-btn-leads" class="tab-btn active py-3 border-b-2 border-emerald-500 text-white text-xs font-bold flex items-center gap-1.5">
           <span class="material-symbols-outlined text-base">inbox</span>
           <span>Заявки и лиды (<span id="leads-counter">0</span>)</span>
         </button>
@@ -135,19 +135,19 @@
             <div class="text-xs text-slate-400">Все клиенты, оставившие расчет или запрос на сайте</div>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick="addDemoLead()" class="px-3 py-1.5 bg-night-800 hover:bg-night-700 border border-blue-900/60 text-slate-300 text-xs rounded-lg flex items-center gap-1">
+            <button onclick="addDemoLead()" class="px-3 py-1.5 bg-night-800 hover:bg-night-700 border border-emerald-900/60 text-slate-300 text-xs rounded-lg flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">add</span> Тестовая заявка
             </button>
-            <button onclick="exportLeadsToCSV()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg flex items-center gap-1">
+            <button onclick="exportLeadsToCSV()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">download</span> Скачать Excel/CSV
             </button>
           </div>
         </div>
 
         <!-- Таблица заявок -->
-        <div class="bg-night-850 rounded-xl border border-blue-900/40 overflow-x-auto">
+        <div class="bg-night-850 rounded-xl border border-emerald-900/40 overflow-x-auto">
           <table class="w-full text-left text-xs">
-            <thead class="bg-night-800 text-slate-400 uppercase text-[10px] border-b border-blue-900/40 font-semibold">
+            <thead class="bg-night-800 text-slate-400 uppercase text-[10px] border-b border-emerald-900/40 font-semibold">
               <tr>
                 <th class="p-3">Дата</th>
                 <th class="p-3">Имя клиента</th>
@@ -171,7 +171,7 @@
 
       <!-- ВКЛАДКА 2: ЦЕНЫ КАЛЬКУЛЯТОРА -->
       <section id="tab-prices" class="hidden space-y-4">
-        <div class="bg-night-850 p-5 rounded-2xl border border-blue-900/40">
+        <div class="bg-night-850 p-5 rounded-2xl border border-emerald-900/40">
           <h2 class="text-base font-bold text-white mb-1">Редактирование тарифов калькулятора</h2>
           <p class="text-xs text-slate-400 mb-5">
             Изменения вступают в силу мгновенно на главном сайте. Посетители сразу увидят новые расценки.
@@ -181,42 +181,42 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Совмещенный санузел (база, ₽):</label>
-                <input type="number" id="rate-turnkey" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-turnkey" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Раздельный санузел (база, ₽):</label>
-                <input type="number" id="rate-separate" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-separate" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Кухонный фартук (база, ₽):</label>
-                <input type="number" id="rate-backsplash" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-backsplash" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Плитка на пол (за 1 м², ₽):</label>
-                <input type="number" id="rate-floor" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-floor" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Запил 45° (за п.м., ₽):</label>
-                <input type="number" id="rate-miter" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-miter" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Эпоксидная затирка (за м², ₽):</label>
-                <input type="number" id="rate-epoxy" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-epoxy" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
 
               <div class="sm:col-span-2">
                 <label class="text-xs font-semibold text-slate-300 block mb-1">Гидроизоляция стен/пола (за м², ₽):</label>
-                <input type="number" id="rate-hydro" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+                <input type="number" id="rate-hydro" required class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
               </div>
             </div>
 
             <div class="flex items-center gap-3 pt-3">
-              <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
+              <button type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
                 Сохранить новые цены
               </button>
               <button type="button" onclick="resetRatesToDefault()" class="px-4 py-2.5 bg-night-800 hover:bg-night-700 text-slate-400 text-xs rounded-xl">
@@ -229,26 +229,26 @@
 
       <!-- ВКЛАДКА 3: НАСТРОЙКИ И БЕЗОПАСНОСТЬ -->
       <section id="tab-settings" class="hidden space-y-4 max-w-xl">
-        <div class="bg-night-850 p-5 rounded-2xl border border-blue-900/40 space-y-4">
+        <div class="bg-night-850 p-5 rounded-2xl border border-emerald-900/40 space-y-4">
           <h2 class="text-base font-bold text-white">Смена пароля администратора</h2>
           <form onsubmit="changePassword(event)" class="space-y-3">
             <div>
               <label class="text-xs font-semibold text-slate-300 block mb-1">Новый пароль:</label>
-              <input type="password" id="new-admin-pass" required placeholder="Введите новый пароль..." class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              <input type="password" id="new-admin-pass" required placeholder="Введите новый пароль..." class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
             </div>
-            <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl">
+            <button type="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl">
               Обновить пароль
             </button>
           </form>
         </div>
 
-        <div class="bg-night-850 p-5 rounded-2xl border border-blue-900/40 space-y-3">
+        <div class="bg-night-850 p-5 rounded-2xl border border-emerald-900/40 space-y-3">
           <h3 class="text-sm font-bold text-white">Резервная копия данных</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
             Все заявки сохраняются в браузере мастера. Вы можете сделать экспорт полного архива или очистить завершенные заявки.
           </p>
           <div class="flex gap-2 pt-1">
-            <button onclick="clearCompletedLeads()" class="px-3 py-1.5 bg-night-800 hover:bg-night-700 border border-blue-900/50 text-xs text-slate-300 rounded-lg">
+            <button onclick="clearCompletedLeads()" class="px-3 py-1.5 bg-night-800 hover:bg-night-700 border border-emerald-900/50 text-xs text-slate-300 rounded-lg">
               Удалить архивные заявки
             </button>
           </div>
@@ -297,13 +297,13 @@
     function switchTab(tabId) {
       ['leads', 'prices', 'settings'].forEach(t => {
         document.getElementById(`tab-${t}`).classList.add('hidden');
-        document.getElementById(`tab-btn-${t}`).classList.remove('active', 'border-blue-500', 'text-white');
+        document.getElementById(`tab-btn-${t}`).classList.remove('active', 'border-emerald-500', 'text-white');
         document.getElementById(`tab-btn-${t}`).classList.add('border-transparent', 'text-slate-400');
       });
 
       document.getElementById(`tab-${tabId}`).classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-      activeBtn.classList.add('active', 'border-blue-500', 'text-white');
+      activeBtn.classList.add('active', 'border-emerald-500', 'text-white');
       activeBtn.classList.remove('border-transparent', 'text-slate-400');
     }
 
@@ -339,7 +339,7 @@
           <td class="p-3 font-bold text-white">${lead.estimatedPrice || '-'}</td>
           <td class="p-3 text-slate-300 max-w-xs truncate">${lead.comment || '—'}</td>
           <td class="p-3">
-            <select onchange="updateLeadStatus(${lead.id}, this.value)" class="bg-night-900 border border-blue-900/60 rounded px-2 py-1 text-[11px] text-slate-200">
+            <select onchange="updateLeadStatus(${lead.id}, this.value)" class="bg-night-900 border border-emerald-900/60 rounded px-2 py-1 text-[11px] text-slate-200">
               <option value="Новая" ${lead.status === 'Новая' ? 'selected' : ''}>Новая</option>
               <option value="В работе" ${lead.status === 'В работе' ? 'selected' : ''}>В работе</option>
               <option value="Замер назначен" ${lead.status === 'Замер назначен' ? 'selected' : ''}>Замер назначен</option>
