@@ -235,31 +235,30 @@
       <!-- ВКЛАДКА 3: НАСТРОЙКИ И БЕЗОПАСНОСТЬ -->
       <section id="tab-settings" class="hidden space-y-4 max-w-xl">
 
-        <!-- УПРАВЛЕНИЕ КОНТАКТАМИ И ГРАФИКОМ МАСТЕРА -->
+                <!-- УПРАВЛЕНИЕ КАНАЛАМИ СВЯЗИ (ТОЛЬКО ПОЧТА, VK, MAX) И ГРАФИКОМ -->
         <div class="bg-night-850 p-5 rounded-2xl border border-emerald-900/40 space-y-4">
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-accent-400 text-xl">contact_page</span>
-            <h2 class="text-base font-bold text-white">Контакты мастера и статус занятости</h2>
+            <span class="material-symbols-outlined text-accent-400 text-xl">alternate_email</span>
+            <h2 class="text-base font-bold text-white">Каналы связи и график мастера</h2>
           </div>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Телефон шифруется на сайте для защиты от спам-роботов. При клике клиент перейдет в WhatsApp или вызов.
+            Связь с клиентами настроена без публикации телефонных номеров: только официальная почта, ВКонтакте и Мессенджер MAX.
           </p>
 
           <form onsubmit="saveMasterSettings(event)" class="space-y-3">
             <div>
-              <label class="text-xs font-semibold text-slate-300 block mb-1">Телефон мастера (для звонков и WhatsApp):</label>
-              <input type="text" id="setting-phone" placeholder="+7 (918) 123-45-67" class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white font-mono"/>
-              <div class="text-[10px] text-slate-500 mt-1">Клиенты смогут звонить и писать в WhatsApp в 1 клик</div>
-            </div>
-
-            <div>
-              <label class="text-xs font-semibold text-slate-300 block mb-1">Telegram (ссылка или @username):</label>
-              <input type="text" id="setting-tg" placeholder="https://t.me/vladimir_kras_tiler" class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              <label class="text-xs font-semibold text-slate-300 block mb-1">Мессенджер MAX (ссылка или контакт):</label>
+              <input type="text" id="setting-max" placeholder="https://max.im или логин в MAX" class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
             </div>
 
             <div>
               <label class="text-xs font-semibold text-slate-300 block mb-1">Ссылка ВКонтакте (VK):</label>
               <input type="text" id="setting-vk" placeholder="https://vk.com/im" class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-300 block mb-1">Email мастера:</label>
+              <input type="email" id="setting-email" placeholder="Pisbmaestb@mail.ru" class="w-full bg-night-900 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white font-mono"/>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
@@ -276,7 +275,7 @@
 
             <div class="pt-2">
               <button type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
-                Сохранить контакты и статус
+                Сохранить настройки связи и графика
               </button>
             </div>
           </form>
@@ -349,42 +348,42 @@
       window.location.reload();
     }
 
-    // Загрузка и сохранение настроек мастера
+    // Загрузка и сохранение настроек мастера (Почта, VK, MAX, График)
     function loadMasterSettings() {
-      const phone = localStorage.getItem('vladimir_master_phone') || '+7 (918) 000-00-00';
-      const tg = localStorage.getItem('vladimir_telegram_link') || 'https://t.me/vladimir_kras_tiler';
+      const maxLink = localStorage.getItem('vladimir_max_link') || 'https://max.im';
       const vk = localStorage.getItem('vladimir_vk_link') || 'https://vk.com/im';
+      const email = localStorage.getItem('vladimir_email') || 'Pisbmaestb@mail.ru';
       const status = localStorage.getItem('vladimir_master_status') || 'В работе 1 санузел (ФМР)';
       const estimate = localStorage.getItem('vladimir_master_estimate') || 'на этой неделе';
 
-      const elPhone = document.getElementById('setting-phone');
-      const elTg = document.getElementById('setting-tg');
+      const elMax = document.getElementById('setting-max');
       const elVk = document.getElementById('setting-vk');
+      const elEmail = document.getElementById('setting-email');
       const elStatus = document.getElementById('setting-status');
       const elEstimate = document.getElementById('setting-estimate');
 
-      if (elPhone) elPhone.value = phone;
-      if (elTg) elTg.value = tg;
+      if (elMax) elMax.value = maxLink;
       if (elVk) elVk.value = vk;
+      if (elEmail) elEmail.value = email;
       if (elStatus) elStatus.value = status;
       if (elEstimate) elEstimate.value = estimate;
     }
 
     function saveMasterSettings(e) {
       e.preventDefault();
-      const phone = document.getElementById('setting-phone').value.trim();
-      const tg = document.getElementById('setting-tg').value.trim();
+      const maxLink = document.getElementById('setting-max').value.trim();
       const vk = document.getElementById('setting-vk').value.trim();
+      const email = document.getElementById('setting-email').value.trim();
       const status = document.getElementById('setting-status').value.trim();
       const estimate = document.getElementById('setting-estimate').value.trim();
 
-      if (phone) localStorage.setItem('vladimir_master_phone', phone);
-      if (tg) localStorage.setItem('vladimir_telegram_link', tg);
+      if (maxLink) localStorage.setItem('vladimir_max_link', maxLink);
       if (vk) localStorage.setItem('vladimir_vk_link', vk);
+      if (email) localStorage.setItem('vladimir_email', email);
       if (status) localStorage.setItem('vladimir_master_status', status);
       if (estimate) localStorage.setItem('vladimir_master_estimate', estimate);
 
-      alert('Контакты и график мастера успешно сохранены!');
+      alert('Настройки связи и графика мастера успешно сохранены!');
     }
 
     function switchTab(tabId) {

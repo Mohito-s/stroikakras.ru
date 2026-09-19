@@ -687,67 +687,19 @@
         </div>
       </div>
 
-      <!-- Каналы связи мастера (Защита от спам-ботов и парсеров) -->
-      <div class="space-y-2">
+            <!-- Каналы связи мастера (СТРОГО Почта, VK и Мессенджер MAX) -->
+      <div class="space-y-2.5">
         <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-accent-400 text-sm">contact_phone</span>
+          <span class="material-symbols-outlined text-accent-400 text-sm">alternate_email</span>
           <span>Прямая связь с Владимиром:</span>
         </div>
 
-        <!-- Звонок (Номер зашифрован, боты не спарсят) -->
-        <button type="button" onclick="handleCallMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-accent-400 text-lg">call</span>
-            <div>
-              <div class="text-[10px] text-slate-400">Прямой телефон мастера:</div>
-              <strong id="phone-display-label" class="text-white text-xs font-mono">Нажмите, чтобы позвонить</strong>
+        <!-- 1. Электронная почта -->
+        <a href="mailto:Pisbmaestb@mail.ru?subject=Вопрос%20мастеру%20по%20ремонту%20санузла%20(Краснодар)" class="flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+              <span class="material-symbols-outlined text-base">mail</span>
             </div>
-          </div>
-          <span class="text-[10px] bg-emerald-500/20 text-accent-400 px-2.5 py-1 rounded-lg border border-emerald-500/30 flex items-center gap-1 shrink-0 group-hover:bg-emerald-500 group-hover:text-night-900 transition-colors">
-            <span class="material-symbols-outlined text-xs">phone_in_talk</span> Позвонить
-          </span>
-        </button>
-
-        <!-- WhatsApp (Скрипт открывает чат с зашифрованным номером) -->
-        <button type="button" onclick="handleWhatsAppMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-emerald-400 text-lg">chat</span>
-            <div>
-              <div class="text-[10px] text-slate-400">Написать в WhatsApp:</div>
-              <strong class="text-white text-xs">Чат WhatsApp (консультация и фото)</strong>
-            </div>
-          </div>
-          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
-        </button>
-
-        <!-- Telegram -->
-        <button type="button" onclick="handleTelegramMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-sky-400 text-lg">send</span>
-            <div>
-              <div class="text-[10px] text-slate-400">Написать в Telegram:</div>
-              <strong class="text-white text-xs">Диалог в Telegram</strong>
-            </div>
-          </div>
-          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
-        </button>
-
-        <!-- ВКонтакте -->
-        <button type="button" onclick="handleVKMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-blue-400 text-lg">forum</span>
-            <div>
-              <div class="text-[10px] text-slate-400">Сообщения ВКонтакте:</div>
-              <strong class="text-white text-xs">Написать диалог VK</strong>
-            </div>
-          </div>
-          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
-        </button>
-
-        <!-- Электронная почта -->
-        <a href="mailto:Pisbmaestb@mail.ru?subject=Вопрос%20мастеру%20по%20ремонту%20санузла%20(Краснодар)" class="flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group">
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-amber-400 text-lg">mail</span>
             <div>
               <div class="text-[10px] text-slate-400">Электронная почта:</div>
               <strong class="text-white text-xs font-mono">Pisbmaestb@mail.ru</strong>
@@ -756,10 +708,38 @@
           <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
         </a>
 
+        <!-- 2. ВКонтакте (VK) -->
+        <button type="button" onclick="handleVKMaster()" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 shrink-0">
+              <span class="material-symbols-outlined text-base">forum</span>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-400">ВКонтакте:</div>
+              <strong class="text-white text-xs">Написать в диалог VK</strong>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+        </button>
+
+        <!-- 3. Мессенджер MAX -->
+        <button type="button" onclick="handleMAXMaster()" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+              <span class="material-symbols-outlined text-base">chat</span>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-400">Мессенджер MAX:</div>
+              <strong class="text-white text-xs">Написать в Мессенджер MAX</strong>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+        </button>
+
         <!-- Пояснение о защите персональных данных -->
         <div class="p-3 bg-night-900/60 rounded-xl border border-emerald-900/40 text-[11px] text-slate-400 flex items-start gap-2">
-          <span class="material-symbols-outlined text-accent-400 text-base shrink-0 mt-0.5">shield</span>
-          <span>Номер скрыт от поисковых роботов и спам-парсеров. Вы связываетесь напрямую с мастером Владимиром.</span>
+          <span class="material-symbols-outlined text-accent-400 text-base shrink-0 mt-0.5">verified_user</span>
+          <span>Конфиденциальность: мы не запрашиваем и не публикуем номера телефонов. Связь осуществляется строго по почте или в мессенджерах VK и MAX.</span>
         </div>
       </div>
     </section>
@@ -875,8 +855,8 @@
         </div>
 
         <div>
-          <label class="text-[11px] font-medium text-slate-300 block mb-1">Ваш телефон, WhatsApp, Telegram или Email для связи:</label>
-          <input type="text" id="lead-contact" required placeholder="+7 (___) ___-__-__, @telegram или ivan@mail.ru" class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"/>
+          <label class="text-[11px] font-medium text-slate-300 block mb-1">Ваш Email или контакт в Мессенджере MAX или VK для ответа:</label>
+          <input type="text" id="lead-contact" required placeholder="ivan@mail.ru, контакт в MAX или vk.com/id" class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"/>
         </div>
 
         <div>
@@ -1122,52 +1102,15 @@
       document.getElementById('checklist-modal').classList.add('hidden');
     }
 
-    // ЗАЩИТА ТЕЛЕФОНА И МЕССЕНДЖЕРОВ ОТ СПАМ-БОТОВ
-    // Номер собирается динамически из обфусцированных сегментов или берется из админ-панели
-    function getMasterCleanPhone() {
-      const saved = localStorage.getItem('vladimir_master_phone');
-      if (saved && saved.trim()) {
-        return saved.replace(/[^0-9+]/g, '');
-      }
-      // Обфусцированный дефолтный номер мастера Владимира (Краснодар):
-      // Собрано из частей, чтобы роботы не прочитали строку в HTML
-      const p1 = '+7';
-      const p2 = '918';
-      const p3 = '000';
-      const p4 = '0000';
-      return p1 + p2 + p3 + p4;
-    }
-
-    function getMasterDisplayPhone() {
-      const saved = localStorage.getItem('vladimir_master_phone');
-      if (saved && saved.trim()) return saved;
-      return '+7 (918) 000-00-00';
-    }
-
-    function handleCallMaster() {
-      const phone = getMasterCleanPhone();
-      const displayLabel = document.getElementById('phone-display-label');
-      if (displayLabel) {
-        displayLabel.innerText = getMasterDisplayPhone();
-        displayLabel.classList.add('text-accent-400');
-      }
-      window.location.href = 'tel:' + phone;
-    }
-
-    function handleWhatsAppMaster() {
-      const phone = getMasterCleanPhone().replace('+', '');
-      const text = encodeURIComponent('Здравствуйте, Владимир! Интересует укладка плитки / ремонт санузла в Краснодаре.');
-      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${text}`, '_blank');
-    }
-
-    function handleTelegramMaster() {
-      const tg = localStorage.getItem('vladimir_telegram_link') || 'https://t.me/vladimir_kras_tiler';
-      window.open(tg, '_blank');
-    }
-
+    // ПЕРЕХОД В КАНАЛЫ СВЯЗИ (VK И MAX)
     function handleVKMaster() {
       const vk = localStorage.getItem('vladimir_vk_link') || 'https://vk.com/im';
       window.open(vk, '_blank');
+    }
+
+    function handleMAXMaster() {
+      const maxLink = localStorage.getItem('vladimir_max_link') || 'https://max.im';
+      window.open(maxLink, '_blank');
     }
 
     // Синхронизация статуса мастера и графика из админки
