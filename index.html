@@ -498,25 +498,25 @@
         Потяните ползунок влево или вправо, чтобы увидеть превращение черновой бетонной коробки от застройщика в идеальный санузел под ключ.
       </p>
 
-      <!-- Before/After Container -->
-      <div class="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden select-none border border-emerald-900/60" id="ba-container">
+            <!-- Before/After Container -->
+      <div class="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden select-none border border-emerald-900/60 cursor-ew-resize touch-none" id="ba-container">
         <!-- After Image (Full background) -->
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="После ремонта ванной" class="absolute inset-0 w-full h-full object-cover"/>
-        <div class="absolute top-3 right-3 bg-emerald-900/90 border border-emerald-500/50 text-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded shadow">ПОСЛЕ (ГОТОВАЯ РАБОТА)</div>
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="После ремонта ванной" class="absolute inset-0 w-full h-full object-cover pointer-events-none"/>
+        <div class="absolute top-3 right-3 bg-emerald-900/90 border border-emerald-500/50 text-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded shadow pointer-events-none z-10">ПОСЛЕ (ГОТОВАЯ РАБОТА)</div>
 
-        <!-- Before Image (Clipped overlay) -->
-        <div class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.8)]" id="ba-before-wrap" style="width: 50%;">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="До ремонта ванной" class="absolute top-0 left-0 max-w-none h-full object-cover" id="ba-before-img"/>
-          <div class="absolute top-3 left-3 bg-night-900/90 border border-slate-700 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded shadow">ДО (ЧЕРНОВОЙ БЕТОН)</div>
+        <!-- Before Image (Overlay with clip-path) -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden" id="ba-before-wrap" style="clip-path: inset(0 50% 0 0); -webkit-clip-path: inset(0 50% 0 0);">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="До ремонта ванной" class="absolute inset-0 w-full h-full object-cover"/>
+          <div class="absolute top-3 left-3 bg-night-900/90 border border-slate-700 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded shadow z-10">ДО (ЧЕРНОВОЙ БЕТОН)</div>
         </div>
+
+        <!-- Divider Line -->
+        <div class="absolute inset-y-0 -translate-x-1/2 w-0.5 bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,1)] pointer-events-none z-20" id="ba-line" style="left: 50%;"></div>
 
         <!-- Slider Handle -->
-        <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-emerald-500 text-night-900 flex items-center justify-center shadow-emerald-glow-lg border-2 border-white cursor-ew-resize pointer-events-none z-10" id="ba-handle" style="left: 50%;">
+        <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-emerald-500 text-night-900 flex items-center justify-center shadow-emerald-glow-lg border-2 border-white pointer-events-none z-30 transition-transform active:scale-110" id="ba-handle" style="left: 50%;">
           <span class="material-symbols-outlined text-base font-bold">drag_indicator</span>
         </div>
-
-        <!-- Touch/Mouse Range Input -->
-        <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="handleBeforeAfter(this.value)"/>
       </div>
     </section>
 
@@ -1036,6 +1036,7 @@
       currentTypeLabel = label;
       updateCalculator();
       syncMasterStatus();
+      initBeforeAfter();
     }
 
     function updateCalculator() {
@@ -1078,20 +1079,70 @@
       document.getElementById('lead-modal').classList.remove('hidden');
       updateCalculator();
       syncMasterStatus();
+      initBeforeAfter();
     }
 
     function closeLeadModal() {
       document.getElementById('lead-modal').classList.add('hidden');
     }
 
-    // Слайдер сравнения ДО / ПОСЛЕ
-    function handleBeforeAfter(val) {
+// Инициализация интерактивного слайдера ДО / ПОСЛЕ
+    function initBeforeAfter() {
+      const container = document.getElementById('ba-container');
       const wrap = document.getElementById('ba-before-wrap');
+      const line = document.getElementById('ba-line');
       const handle = document.getElementById('ba-handle');
-      if (wrap && handle) {
-        wrap.style.width = val + '%';
-        handle.style.left = val + '%';
+      if (!container || !wrap || !handle) return;
+
+      let isDragging = false;
+
+      function updateSlider(clientX) {
+        const rect = container.getBoundingClientRect();
+        let x = clientX - rect.left;
+        x = Math.max(0, Math.min(rect.width, x));
+        const pct = (x / rect.width) * 100;
+
+        wrap.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        wrap.style.webkitClipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+        if (line) line.style.left = pct + '%';
       }
+
+      container.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        try { container.setPointerCapture(e.pointerId); } catch(err) {}
+        updateSlider(e.clientX);
+      });
+
+      container.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+      });
+
+      function stopDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        try { container.releasePointerCapture(e.pointerId); } catch(err) {}
+      }
+
+      container.addEventListener('pointerup', stopDrag);
+      container.addEventListener('pointercancel', stopDrag);
+
+      // Fallback touch events
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          isDragging = true;
+          updateSlider(e.touches[0].clientX);
+        }
+      }, { passive: true });
+
+      container.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches && e.touches[0]) {
+          updateSlider(e.touches[0].clientX);
+        }
+      }, { passive: true });
+
+      container.addEventListener('touchend', () => { isDragging = false; });
     }
 
     // Чек-лист новосела
@@ -1209,6 +1260,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       updateCalculator();
       syncMasterStatus();
+      initBeforeAfter();
     });
   </script>
 
