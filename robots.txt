@@ -1,0 +1,16 @@
+# robots.txt для сайта мастера Владимира (Краснодар)
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /*admin*
+Disallow: /*?*utm_
+
+# Специальные директивы для Яндекса
+User-agent: Yandex
+Allow: /
+Disallow: /admin.html
+Disallow: /*admin*
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content /
+
+# Карта сайта для stroikakras.ru
+Sitemap: https://stroikakras.ru/sitemap.xml

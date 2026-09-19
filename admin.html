@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Управление сайтом | Панель мастера Владимира</title>
+  <meta name="robots" content="noindex, nofollow"/>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            night: {
+              900: '#070a10',
+              850: '#0b101b',
+              800: '#101726',
+              700: '#1b2640',
+            },
+            accent: {
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #070a10;
+      background-image: radial-gradient(circle at top, rgba(37, 99, 235, 0.12) 0%, transparent 60%);
+    }
+  </style>
+</head>
+
+<body class="text-slate-100 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
+
+  <!-- ЭКРАН АВТОРИЗАЦИИ (ПО УМОЛЧАНИЮ) -->
+  <div id="auth-screen" class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-sm w-full bg-night-800 border border-blue-500/30 rounded-2xl p-6 shadow-2xl relative">
+      <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/40 text-accent-400 flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
+      </div>
+
+      <h1 class="text-lg font-bold text-center text-white mb-1">Скрытая панель управления</h1>
+      <p class="text-xs text-slate-400 text-center mb-5">Вход для мастера Владимира</p>
+
+      <form onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <label class="text-xs font-semibold text-slate-300 block mb-1.5">ПИН-код / Пароль:</label>
+          <input type="password" id="admin-pass" required placeholder="Введите пароль..." class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 font-mono tracking-widest"/>
+          <div class="text-[10px] text-slate-500 mt-1">Пароль по умолчанию: <code class="text-accent-400">vladimir2026</code></div>
+        </div>
+
+        <div id="auth-error" class="hidden text-xs text-rose-400 bg-rose-950/40 p-2 rounded-lg border border-rose-800/40 text-center">
+          Неверный пароль доступа!
+        </div>
+
+        <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
+          Войти в панель
+        </button>
+
+        <a href="index.html" class="block text-center text-xs text-slate-400 hover:text-slate-200 pt-2">
+          ← Вернуться на главный сайт
+        </a>
+      </form>
+    </div>
+  </div>
+
+  <!-- ГЛАВНАЯ АДМИН-ПАНЕЛЬ (ПОСЛЕ ВХОДА) -->
+  <div id="admin-dashboard" class="hidden min-h-screen flex flex-col">
+    <!-- Верхний бар -->
+    <header class="bg-night-850 border-b border-blue-900/40 sticky top-0 z-30">
+      <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-accent-400 text-2xl">construction</span>
+          <div>
+            <div class="text-sm font-bold text-white">Панель Владимира</div>
+            <div class="text-[10px] text-slate-400">Ремонт санузлов • Краснодар</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="index.html" target="_blank" class="flex items-center gap-1 text-xs text-accent-400 hover:text-white bg-night-800 px-3 py-1.5 rounded-lg border border-blue-900/60">
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+            <span>Открыть сайт</span>
+          </a>
+          <button onclick="handleLogout()" class="text-xs text-slate-400 hover:text-rose-400 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">logout</span>
+            <span>Выход</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Навигация по вкладкам -->
+    <div class="bg-night-900 border-b border-blue-900/30">
+      <div class="max-w-5xl mx-auto px-4 flex gap-4">
+        <button onclick="switchTab('leads')" id="tab-btn-leads" class="tab-btn active py-3 border-b-2 border-blue-500 text-white text-xs font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">inbox</span>
+          <span>Заявки и лиды (<span id="leads-counter">0</span>)</span>
+        </button>
+        <button onclick="switchTab('prices')" id="tab-btn-prices" class="tab-btn py-3 border-b-2 border-transparent text-slate-400 hover:text-white text-xs font-semibold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">tune</span>
+          <span>Цены калькулятора</span>
+        </button>
+        <button onclick="switchTab('settings')" id="tab-btn-settings" class="tab-btn py-3 border-b-2 border-transparent text-slate-400 hover:text-white text-xs font-semibold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">settings</span>
+          <span>Контакты и безопасность</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Контент вкладок -->
+    <main class="max-w-5xl mx-auto w-full px-4 py-6 flex-grow">
+
+      <!-- ВКЛАДКА 1: ЗАЯВКИ -->
+      <section id="tab-leads" class="space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+          <div>
+            <h2 class="text-base font-bold text-white">Список полученных заявок</h2>
+            <div class="text-xs text-slate-400">Все клиенты, оставившие расчет или запрос на сайте</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="addDemoLead()" class="px-3 py-1.5 bg-night-800 hover:bg-night-700 border border-blue-900/60 text-slate-300 text-xs rounded-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span> Тестовая заявка
+            </button>
+            <button onclick="exportLeadsToCSV()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">download</span> Скачать Excel/CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Таблица заявок -->
+        <div class="bg-night-850 rounded-xl border border-blue-900/40 overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-night-800 text-slate-400 uppercase text-[10px] border-b border-blue-900/40 font-semibold">
+              <tr>
+                <th class="p-3">Дата</th>
+                <th class="p-3">Имя клиента</th>
+                <th class="p-3">Контакт</th>
+                <th class="p-3">Объект / Метраж</th>
+                <th class="p-3">Расчет</th>
+                <th class="p-3">Комментарий / Район</th>
+                <th class="p-3">Статус</th>
+                <th class="p-3 text-right">Действие</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody" class="divide-y divide-blue-900/30 text-slate-200">
+              <!-- Заполняется JavaScript -->
+            </tbody>
+          </table>
+          <div id="leads-empty" class="p-8 text-center text-slate-500 text-xs hidden">
+            Пока нет ни одной заявки. Новые заявки с калькулятора сайта появятся здесь автоматически.
+          </div>
+        </div>
+      </section>
+
+      <!-- ВКЛАДКА 2: ЦЕНЫ КАЛЬКУЛЯТОРА -->
+      <section id="tab-prices" class="hidden space-y-4">
+        <div class="bg-night-850 p-5 rounded-2xl border border-blue-900/40">
+          <h2 class="text-base font-bold text-white mb-1">Редактирование тарифов калькулятора</h2>
+          <p class="text-xs text-slate-400 mb-5">
+            Изменения вступают в силу мгновенно на главном сайте. Посетители сразу увидят новые расценки.
+          </p>
+
+          <form onsubmit="saveRates(event)" class="space-y-4 max-w-xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Совмещенный санузел (база, ₽):</label>
+                <input type="number" id="rate-turnkey" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+
+              <div>
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Раздельный санузел (база, ₽):</label>
+                <input type="number" id="rate-separate" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+
+              <div>
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Кухонный фартук (база, ₽):</label>
+                <input type="number" id="rate-backsplash" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+
+              <div>
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Плитка на пол (за 1 м², ₽):</label>
+                <input type="number" id="rate-floor" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+
+              <div>
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Запил 45° (за п.м., ₽):</label>
+                <input type="number" id="rate-miter" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+
+              <div>
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Эпоксидная затирка (за м², ₽):</label>
+                <input type="number" id="rate-epoxy" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="text-xs font-semibold text-slate-300 block mb-1">Гидроизоляция стен/пола (за м², ₽):</label>
+                <input type="number" id="rate-hydro" required class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 pt-3">
+              <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-lg transition-all">
+                Сохранить новые цены
+              </button>
+              <button type="button" onclick="resetRatesToDefault()" class="px-4 py-2.5 bg-night-800 hover:bg-night-700 text-slate-400 text-xs rounded-xl">
+                Сбросить к исходным
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ВКЛАДКА 3: НАСТРОЙКИ И БЕЗОПАСНОСТЬ -->
+      <section id="tab-settings" class="hidden space-y-4 max-w-xl">
+        <div class="bg-night-850 p-5 rounded-2xl border border-blue-900/40 space-y-4">
+          <h2 class="text-base font-bold text-white">Смена пароля администратора</h2>
+          <form onsubmit="changePassword(event)" class="space-y-3">
+            <div>
+              <label class="text-xs font-semibold text-slate-300 block mb-1">Новый пароль:</label>
+              <input type="password" id="new-admin-pass" required placeholder="Введите новый пароль..." class="w-full bg-night-900 border border-blue-900/60 rounded-xl px-3 py-2 text-xs text-white"/>
+            </div>
+            <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl">
+              Обновить пароль
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-night-850 p-5 rounded-2xl border border-blue-900/40 space-y-3">
+          <h3 class="text-sm font-bold text-white">Резервная копия данных</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Все заявки сохраняются в браузере мастера. Вы можете сделать экспорт полного архива или очистить завершенные заявки.
+          </p>
+          <div class="flex gap-2 pt-1">
+            <button onclick="clearCompletedLeads()" class="px-3 py-1.5 bg-night-800 hover:bg-night-700 border border-blue-900/50 text-xs text-slate-300 rounded-lg">
+              Удалить архивные заявки
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Скрипты админки -->
+  <script>
+    const DEFAULT_PASS = 'vladimir2026';
+
+    function getAdminPass() {
+      return localStorage.getItem('vladimir_admin_pass') || DEFAULT_PASS;
+    }
+
+    function checkAuth() {
+      if (sessionStorage.getItem('vladimir_admin_logged') === 'true') {
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('admin-dashboard').classList.remove('hidden');
+        renderLeads();
+        loadRatesIntoForm();
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const entered = document.getElementById('admin-pass').value.trim();
+      if (entered === getAdminPass()) {
+        sessionStorage.setItem('vladimir_admin_logged', 'true');
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('admin-dashboard').classList.remove('hidden');
+        renderLeads();
+        loadRatesIntoForm();
+      } else {
+        document.getElementById('auth-error').classList.remove('hidden');
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('vladimir_admin_logged');
+      window.location.reload();
+    }
+
+    function switchTab(tabId) {
+      ['leads', 'prices', 'settings'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.add('hidden');
+        document.getElementById(`tab-btn-${t}`).classList.remove('active', 'border-blue-500', 'text-white');
+        document.getElementById(`tab-btn-${t}`).classList.add('border-transparent', 'text-slate-400');
+      });
+
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      activeBtn.classList.add('active', 'border-blue-500', 'text-white');
+      activeBtn.classList.remove('border-transparent', 'text-slate-400');
+    }
+
+    // Загрузка и рендер заявок
+    function getLeads() {
+      try {
+        return JSON.parse(localStorage.getItem('vladimir_leads') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderLeads() {
+      const leads = getLeads();
+      const tbody = document.getElementById('leads-tbody');
+      const emptyState = document.getElementById('leads-empty');
+      const counter = document.getElementById('leads-counter');
+      counter.innerText = leads.length;
+
+      if (leads.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      tbody.innerHTML = leads.map((lead, idx) => `
+        <tr class="hover:bg-night-800/50 transition">
+          <td class="p-3 text-[11px] text-slate-400 whitespace-nowrap">${lead.date || '-'}</td>
+          <td class="p-3 font-semibold text-white">${lead.name || 'Без имени'}</td>
+          <td class="p-3 font-mono text-accent-400 select-all">${lead.contact || '-'}</td>
+          <td class="p-3">${lead.type || '-'} <span class="text-slate-400">(${lead.area || ''})</span></td>
+          <td class="p-3 font-bold text-white">${lead.estimatedPrice || '-'}</td>
+          <td class="p-3 text-slate-300 max-w-xs truncate">${lead.comment || '—'}</td>
+          <td class="p-3">
+            <select onchange="updateLeadStatus(${lead.id}, this.value)" class="bg-night-900 border border-blue-900/60 rounded px-2 py-1 text-[11px] text-slate-200">
+              <option value="Новая" ${lead.status === 'Новая' ? 'selected' : ''}>Новая</option>
+              <option value="В работе" ${lead.status === 'В работе' ? 'selected' : ''}>В работе</option>
+              <option value="Замер назначен" ${lead.status === 'Замер назначен' ? 'selected' : ''}>Замер назначен</option>
+              <option value="Завершена" ${lead.status === 'Завершена' ? 'selected' : ''}>Завершена</option>
+            </select>
+          </td>
+          <td class="p-3 text-right">
+            <button onclick="deleteLead(${lead.id})" class="text-slate-500 hover:text-rose-400 p-1">
+              <span class="material-symbols-outlined text-base">delete</span>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateLeadStatus(id, newStatus) {
+      let leads = getLeads();
+      leads = leads.map(l => l.id === id ? { ...l, status: newStatus } : l);
+      localStorage.setItem('vladimir_leads', JSON.stringify(leads));
+      renderLeads();
+    }
+
+    function deleteLead(id) {
+      if (!confirm('Удалить эту заявку?')) return;
+      let leads = getLeads();
+      leads = leads.filter(l => l.id !== id);
+      localStorage.setItem('vladimir_leads', JSON.stringify(leads));
+      renderLeads();
+    }
+
+    function clearCompletedLeads() {
+      if (!confirm('Удалить все завершенные заявки?')) return;
+      let leads = getLeads();
+      leads = leads.filter(l => l.status !== 'Завершена');
+      localStorage.setItem('vladimir_leads', JSON.stringify(leads));
+      renderLeads();
+      alert('Завершенные заявки очищены!');
+    }
+
+    function addDemoLead() {
+      const demo = {
+        id: Date.now(),
+        date: new Date().toLocaleString('ru-RU'),
+        name: 'Сергей (Пример)',
+        contact: '+7 (918) 555-12-34',
+        comment: 'ФМР, новостройка, нужен совмещенный санузел с инсталляцией',
+        source: 'Тестовая заявка',
+        type: 'Совмещенный санузел под ключ',
+        area: '14 м²',
+        estimatedPrice: 'от 72 000 ₽',
+        status: 'Новая'
+      };
+      const leads = getLeads();
+      leads.unshift(demo);
+      localStorage.setItem('vladimir_leads', JSON.stringify(leads));
+      renderLeads();
+    }
+
+    function exportLeadsToCSV() {
+      const leads = getLeads();
+      if (leads.length === 0) {
+        alert('Нет данных для экспорта!');
+        return;
+      }
+      let csv = '\uFEFFДата;Имя;Контакт;Услуга;Площадь;Цена;Комментарий;Статус\n';
+      leads.forEach(l => {
+        csv += `"${l.date}";"${l.name}";"${l.contact}";"${l.type}";"${l.area}";"${l.estimatedPrice}";"${(l.comment||'').replace(/"/g, '""')}";"${l.status}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `leads_vladimir_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Управление ценами
+    const defaultRates = {
+      turnkey: 65000,
+      separate: 78000,
+      backsplash: 14000,
+      floor: 1700,
+      miterRate: 1200,
+      epoxyRate: 550,
+      hydroRate: 450
+    };
+
+    function loadRatesIntoForm() {
+      const saved = JSON.parse(localStorage.getItem('vladimir_calc_rates') || 'null') || defaultRates;
+      document.getElementById('rate-turnkey').value = saved.turnkey;
+      document.getElementById('rate-separate').value = saved.separate;
+      document.getElementById('rate-backsplash').value = saved.backsplash;
+      document.getElementById('rate-floor').value = saved.floor;
+      document.getElementById('rate-miter').value = saved.miterRate;
+      document.getElementById('rate-epoxy').value = saved.epoxyRate;
+      document.getElementById('rate-hydro').value = saved.hydroRate;
+    }
+
+    function saveRates(e) {
+      e.preventDefault();
+      const updated = {
+        turnkey: parseInt(document.getElementById('rate-turnkey').value, 10),
+        separate: parseInt(document.getElementById('rate-separate').value, 10),
+        backsplash: parseInt(document.getElementById('rate-backsplash').value, 10),
+        floor: parseInt(document.getElementById('rate-floor').value, 10),
+        miterRate: parseInt(document.getElementById('rate-miter').value, 10),
+        epoxyRate: parseInt(document.getElementById('rate-epoxy').value, 10),
+        hydroRate: parseInt(document.getElementById('rate-hydro').value, 10),
+      };
+      localStorage.setItem('vladimir_calc_rates', JSON.stringify(updated));
+      alert('Цены успешно сохранены и обновлены на сайте!');
+    }
+
+    function resetRatesToDefault() {
+      if (!confirm('Вернуть стандартные цены?')) return;
+      localStorage.removeItem('vladimir_calc_rates');
+      loadRatesIntoForm();
+      alert('Тарифы сброшены к исходным!');
+    }
+
+    function changePassword(e) {
+      e.preventDefault();
+      const val = document.getElementById('new-admin-pass').value.trim();
+      if (val.length < 4) {
+        alert('Пароль должен быть не короче 4 символов!');
+        return;
+      }
+      localStorage.setItem('vladimir_admin_pass', val);
+      alert('Пароль успешно обновлен!');
+      document.getElementById('new-admin-pass').value = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', checkAuth);
+  </script>
+</body>
+</html>
