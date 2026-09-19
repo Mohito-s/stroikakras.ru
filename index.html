@@ -683,8 +683,10 @@
     <footer class="pt-4 pb-8 text-center text-slate-500 text-xs space-y-2">
       <div class="text-accent-400 font-semibold">Частный мастер Владимир • Плиточные работы в Краснодаре</div>
       <p>© 2026 г. Краснодар. Работа по договору с гарантией 2 года.</p>
-      <div class="text-[10px] text-slate-600">
-        Почта: <a href="mailto:Pisbmaestb@mail.ru" class="underline hover:text-slate-400">Pisbmaestb@mail.ru</a>
+      <div class="text-[10px] text-slate-500 flex items-center justify-center gap-3">
+        <span>Почта: <a href="mailto:Pisbmaestb@mail.ru" class="underline hover:text-slate-400">Pisbmaestb@mail.ru</a></span>
+        <span>•</span>
+        <button type="button" onclick="openPrivacyModal()" class="underline hover:text-slate-400">Политика конфиденциальности (152-ФЗ)</button>
       </div>
     </footer>
 
@@ -732,7 +734,7 @@
           <span class="material-symbols-outlined text-base">mail</span>
         </div>
         <div>
-          <h3 class="text-sm font-bold text-white">Заявка на расчет / замер</h3>
+          <h3 class="text-sm font-bold text-white">Заявка на расчет / консультацию</h3>
           <div class="text-[10px] text-slate-400">Мастер Владимир лично ответит вам в течение 30 минут</div>
         </div>
       </div>
@@ -746,8 +748,8 @@
         </div>
 
         <div>
-          <label class="text-[11px] font-medium text-slate-300 block mb-1">Телефон или Email для связи:</label>
-          <input type="text" id="lead-contact" required placeholder="+7 (___) ___-__-__ или email" class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"/>
+          <label class="text-[11px] font-medium text-slate-300 block mb-1">Ваш Email или контакт в Мессенджере MAX или VK для ответа:</label>
+          <input type="text" id="lead-contact" required placeholder="ivan@mail.ru или @username в MAX / vk.com/id" class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"/>
         </div>
 
         <div>
@@ -759,14 +761,50 @@
           <!-- Заполнится скриптом -->
         </div>
 
+        <!-- Согласие 152-ФЗ -->
+        <label class="flex items-start gap-2 text-[10px] text-slate-400 cursor-pointer pt-0.5">
+          <input type="checkbox" id="lead-consent" checked required class="w-3.5 h-3.5 mt-0.5 rounded text-emerald-600 bg-night-900 border-emerald-900/60 focus:ring-0"/>
+          <span>Согласен на обработку данных для расчета сметы согласно <button type="button" onclick="openPrivacyModal()" class="underline text-accent-400 hover:text-white">Политике конфиденциальности (152-ФЗ)</button></span>
+        </label>
+
         <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white text-xs font-bold rounded-xl shadow-emerald-glow transition-all">
           Отправить мастеру Владимиру
         </button>
 
         <p class="text-[10px] text-slate-400 text-center">
-          Данные отправляются на почту <strong class="text-slate-300">Pisbmaestb@mail.ru</strong> и фиксируются в системе мастера.
+          Данные отправляются на почту <strong class="text-slate-300">Pisbmaestb@mail.ru</strong> для расчета. Мы не рассылаем спам.
         </p>
       </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- МОДАЛЬНОЕ ОКНО ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ (152-ФЗ)                      -->
+  <!-- ========================================================================= -->
+  <div id="privacy-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="card-glass rounded-2xl max-w-lg w-full p-5 border border-emerald-500/40 relative shadow-emerald-glow-lg max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-emerald-900/40">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-accent-400 text-xl">policy</span>
+          <h3 class="text-sm font-bold text-white">Политика конфиденциальности (152-ФЗ)</h3>
+        </div>
+        <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-white">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto py-3 text-xs text-slate-300 space-y-2.5 leading-relaxed pr-1">
+        <p><strong>1. Общие положения:</strong> Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки данных частным мастером Владимиром (г. Краснодар, сайт stroikakras.ru).</p>
+        <p><strong>2. Собираемые данные:</strong> Обрабатываются только те данные, которые пользователь добровольно указывает в форме расчета: имя, адрес электронной почты (Email) или ник/контакт в мессенджере MAX / VK, а также технические параметры санузла. Номера телефонов и паспортные данные не запрашиваются.</p>
+        <p><strong>3. Цели обработки:</strong> Персональные данные используются исключительно для ответа на запрос пользователя, предварительного расчета стоимости плиточных работ и согласования даты замера.</p>
+        <p><strong>4. Защита и конфиденциальность:</strong> Данные никогда не передаются третьим лицам, рекламным сервисам или в спам-базы. Срок обработки — до завершения коммуникации либо по письменному запросу пользователя на отзыв по адресу Pisbmaestb@mail.ru.</p>
+      </div>
+
+      <div class="pt-3 border-t border-emerald-900/40 flex justify-end">
+        <button type="button" onclick="closePrivacyModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition">
+          Понятно
+        </button>
+      </div>
     </div>
   </div>
 
@@ -872,6 +910,14 @@
 
     function closeLeadModal() {
       document.getElementById('lead-modal').classList.add('hidden');
+    }
+
+    function openPrivacyModal() {
+      document.getElementById('privacy-modal').classList.remove('hidden');
+    }
+
+    function closePrivacyModal() {
+      document.getElementById('privacy-modal').classList.add('hidden');
     }
 
     // Обработка отправки лида

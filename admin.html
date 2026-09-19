@@ -151,7 +151,7 @@
               <tr>
                 <th class="p-3">Дата</th>
                 <th class="p-3">Имя клиента</th>
-                <th class="p-3">Контакт</th>
+                <th class="p-3">Email / MAX / VK</th>
                 <th class="p-3">Объект / Метраж</th>
                 <th class="p-3">Расчет</th>
                 <th class="p-3">Комментарий / Район</th>
@@ -159,7 +159,7 @@
                 <th class="p-3 text-right">Действие</th>
               </tr>
             </thead>
-            <tbody id="leads-tbody" class="divide-y divide-blue-900/30 text-slate-200">
+            <tbody id="leads-tbody" class="divide-y divide-emerald-900/30 text-slate-200">
               <!-- Заполняется JavaScript -->
             </tbody>
           </table>
@@ -384,7 +384,7 @@
         id: Date.now(),
         date: new Date().toLocaleString('ru-RU'),
         name: 'Сергей (Пример)',
-        contact: '+7 (918) 555-12-34',
+        contact: 'sergey.remont@mail.ru (MAX: @sergey_krd)',
         comment: 'ФМР, новостройка, нужен совмещенный санузел с инсталляцией',
         source: 'Тестовая заявка',
         type: 'Совмещенный санузел под ключ',
@@ -404,7 +404,7 @@
         alert('Нет данных для экспорта!');
         return;
       }
-      let csv = '\uFEFFДата;Имя;Контакт;Услуга;Площадь;Цена;Комментарий;Статус\n';
+      let csv = '\uFEFFДата;Имя;Email_MAX_VK;Услуга;Площадь;Цена;Комментарий;Статус\n';
       leads.forEach(l => {
         csv += `"${l.date}";"${l.name}";"${l.contact}";"${l.type}";"${l.area}";"${l.estimatedPrice}";"${(l.comment||'').replace(/"/g, '""')}";"${l.status}"\n`;
       });
