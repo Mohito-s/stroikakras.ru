@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ATELIER STONE | Мастер укладки крупноформатного керамогранита и ванные под ключ</title>
+<!-- Google Fonts: Bodoni Moda & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms & Container Queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#690005",
+            "primary": "#e9c176",
+            "tertiary-fixed": "#e2e2e6",
+            "on-primary": "#412d00",
+            "surface-container-low": "#1b1b1f",
+            "outline-variant": "#4e4639",
+            "surface-container": "#1f1f23",
+            "on-primary-fixed": "#261900",
+            "tertiary": "#c6c6ca",
+            "outline": "#9a8f80",
+            "on-tertiary-fixed": "#1a1c1f",
+            "surface-dim": "#121316",
+            "on-primary-container": "#4e3700",
+            "on-primary-fixed-variant": "#5d4201",
+            "on-tertiary-fixed-variant": "#45474a",
+            "inverse-surface": "#e3e2e6",
+            "surface": "#121316",
+            "on-secondary-fixed": "#241a00",
+            "secondary-container": "#af8d11",
+            "surface-tint": "#e9c176",
+            "primary-fixed-dim": "#e9c176",
+            "on-secondary-container": "#342800",
+            "on-secondary-fixed-variant": "#574500",
+            "surface-variant": "#343538",
+            "on-secondary": "#3c2f00",
+            "surface-container-high": "#292a2d",
+            "inverse-primary": "#775a19",
+            "secondary-fixed": "#ffe088",
+            "tertiary-container": "#a4a5a9",
+            "tertiary-fixed-dim": "#c6c6ca",
+            "inverse-on-surface": "#2f3034",
+            "on-tertiary": "#2f3034",
+            "surface-container-lowest": "#0d0e11",
+            "on-surface": "#e3e2e6",
+            "primary-fixed": "#ffdea5",
+            "surface-container-highest": "#343538",
+            "secondary": "#e9c349",
+            "surface-bright": "#38393c",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "on-background": "#e3e2e6",
+            "error": "#ffb4ab",
+            "on-surface-variant": "#d1c5b4",
+            "background": "#121316",
+            "primary-container": "#c5a059",
+            "secondary-fixed-dim": "#e9c349",
+            "on-tertiary-container": "#393b3e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xxl": "4rem",
+            "margin-desktop": "4rem",
+            "margin-tablet": "2rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.5rem",
+            "gutter": "1rem",
+            "gutter-desktop": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Bodoni Moda"],
+            "headline-lg-mobile": ["Bodoni Moda"],
+            "headline-xl-mobile": ["Bodoni Moda"],
+            "title-editorial": ["Bodoni Moda"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-xl": ["Bodoni Moda"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-hero": ["Bodoni Moda"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Bodoni Moda"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-hero-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "title-editorial": ["20px", { "lineHeight": "28px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.15em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Architectural 1mm joint precision lines */
+    .joint-border {
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+    .joint-border-gold {
+      box-shadow: inset 0 0 0 1px rgba(197, 160, 89, 0.4);
+    }
+    .gold-specular-glow {
+      box-shadow: 0 16px 40px -8px rgba(0,0,0,0.85), 0 0 24px 0 rgba(197, 160, 89, 0.12);
+    }
+    /* Slider Range Customization */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      background: #C5A059;
+      cursor: pointer;
+      border: 2px solid #121316;
+      border-radius: 0px;
+      box-shadow: 0 0 10px rgba(197,160,89,0.5);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container pb-28">
+<!-- ========================================================================= -->
+<!-- TOP APP BAR (from Shared Components JSON)                                 -->
+<!-- ========================================================================= -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-space-md py-space-sm bg-surface/95 dark:bg-surface/95 backdrop-blur-sm border-b border-outline-variant">
+<!-- Leading brand unit -->
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="architecture">architecture</span>
+<div class="flex flex-col">
+<span class="font-display-hero-mobile text-headline-sm-mobile tracking-widest text-primary dark:text-primary uppercase font-bold leading-tight">ATELIER STONE</span>
+<span class="font-label-caps text-label-caps text-outline tracking-wider uppercase scale-90 origin-left">МАСТЕР ПЛИТКИ &amp; ВАННЫЕ</span>
+</div>
+</div>
+<!-- Action Call Button -->
+<div class="flex items-center space-x-3">
+<a class="flex items-center space-x-1.5 px-3 py-1.5 bg-surface-container border border-outline-variant text-primary hover:border-primary transition-colors text-label-sm font-label-sm" href="tel:+79990000000">
+<span class="material-symbols-outlined text-base" data-icon="call">call</span>
+<span class="text-label-caps font-label-caps tracking-widest font-bold">CALL</span>
+</a>
+</div>
+</header>
+<!-- Content Padding Compensation for Fixed Header -->
+<div class="h-16"></div>
+<!-- ========================================================================= -->
+<!-- HERO SECTION                                                             -->
+<!-- ========================================================================= -->
+<section class="relative px-space-md pt-6 pb-10 overflow-hidden border-b border-outline-variant/40">
+<!-- Subtle architectural blueprint background grid -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#1f1f23_1px,transparent_1px),linear-gradient(to_bottom,#1f1f23_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"></div>
+<div class="relative z-10 max-w-lg mx-auto flex flex-col items-start">
+<!-- Technical Badge -->
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container border border-primary/30 mb-4">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span class="font-label-caps text-label-caps tracking-wider text-primary uppercase">Премиальная укладка керамогранита &amp; ванные под ключ</span>
+</div>
+<!-- Hero Headline (Bodoni Moda) -->
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface mb-3 font-normal leading-tight">
+        Безупречная геометрия и ювелирная точность швов
+      </h1>
+<!-- Architectural Subtitle -->
+<p class="font-body-md text-body-md text-tertiary mb-6 leading-relaxed">
+        Сложные дизайнерские решения, крупный формат слэбов до 3200×1600 мм, запил углов под 45° без микросколов, эпоксидная затирка в тон камня и невидимые ревизионные люки.
+      </p>
+<!-- CTA Buttons Stack -->
+<div class="w-full flex flex-col gap-3 mb-6">
+<a class="w-full text-center bg-primary-container hover:bg-secondary text-surface-dim font-label-md text-label-md tracking-wider uppercase py-3.5 px-6 transition-all duration-200 gold-specular-glow flex items-center justify-center gap-2" href="#calculator">
+<span>Рассчитать смету за 2 минуты</span>
+<span class="material-symbols-outlined text-lg" data-icon="straighten">straighten</span>
+</a>
+<a class="w-full text-center bg-surface-container border border-outline-variant hover:border-primary text-on-surface font-label-md text-label-md tracking-wider uppercase py-3 px-6 transition-all duration-200 flex items-center justify-center gap-2" href="#portfolio">
+<span>Смотреть работы</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Trust Metrics Pill -->
+<div class="w-full bg-surface-container-low p-3.5 border border-outline-variant/60 flex items-center justify-between text-tertiary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm">Гарантия 5 лет по договору</span>
+</div>
+<div class="h-3 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="construction">construction</span>
+<span class="font-label-sm text-label-sm">12+ лет опыта</span>
+</div>
+<div class="h-3 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base" data-icon="cleaning_services">cleaning_services</span>
+<span class="font-label-sm text-label-sm">Без пыли</span>
+</div>
+</div>
+<!-- Hero Visual Accent Image -->
+<div class="w-full mt-6 relative border border-outline-variant overflow-hidden group">
+<div class="aspect-[16/10] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up macro architectural photograph of a luxury bathroom niche. Deep graphite and anthracite marble tiles feature a razor-sharp 45-degree mitered edge joint with 1mm seamless epoxy grouting. Concealed warm 2700K brass strip lighting illuminates the textured stone surfaces. Ultra-clean lines, modern quiet luxury aesthetic, pristine craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlqIRJbXghqESh1lQQhqLmyr5nlgDqIRXf2Qfo3CbaeAY-aYmppb1KRL5OEYtvTNuwGKpaBCtd-O0WWagJ8Aczyfouq5kaqj-84CYg6F3V50Gj6hh35PVZmdlQIPuWNF8S8ORTEK0Ml96aKQw76a1k7L5Ek-acRcLk3Hfg4Kkge8tga_IngKUPuqFPCMlhjLcWrQp7xPHA5n9msQWqxPrjuaUXgrG6dKY5KjmnYhvuSO9xRAh7P_ZI"/>
+</div>
+<div class="absolute bottom-2 left-2 bg-surface-dim/90 backdrop-blur-md px-2.5 py-1 border border-primary/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-xs" data-icon="verified">verified</span>
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">КАЧЕСТВО МОНТАЖА СНИП 3.04.01-87</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- KEY DIFFERENTIATORS / PRECISION FEATURES                                  -->
+<!-- ========================================================================= -->
+<section class="px-space-md py-10 border-b border-outline-variant/40 bg-surface-container-lowest">
+<div class="max-w-lg mx-auto">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Стандарты мастерской</span>
+<span class="font-label-caps text-label-caps text-outline">01 / ТОЧНОСТЬ</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6 font-normal">
+        Бескомпромиссная точность на каждом этапе
+      </h2>
+<!-- Bento Grid Layout for Differentiators -->
+<div class="grid grid-cols-1 gap-3">
+<!-- Feature 1: Miter Cut 45 -->
+<div class="bg-surface-container p-5 border border-outline-variant/50 relative">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 bg-surface-container-low border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="square_foot">square_foot</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary bg-surface-dim px-2 py-0.5 border border-primary/20">ФИРМЕННЫЙ КАНТ</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1.5">Запил под 45° (Усовка)</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Филигранная ручная доводка внешних углов без дешевых пластиковых или металлических накладок. Сохранение целостности эмали плиты с идеальным примыканием в 1 мм.
+          </p>
+</div>
+<!-- Feature 2: Large Format Slabs -->
+<div class="bg-surface-container p-5 border border-outline-variant/50 relative">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 bg-surface-container-low border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="view_compact">view_compact</span>
+</div>
+<span class="font-label-caps text-label-caps text-tertiary bg-surface-dim px-2 py-0.5 border border-outline-variant">ДО 3200×1600 ММ</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1.5">Крупноформатный керамогранит</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Профессиональная вакуумная система переноски Sigma и Raimondi. Непрерывный подбор рисунка жилы (Bookmatch) и укладка плит во всю высоту стены без горизонтальных стыков.
+          </p>
+</div>
+<!-- Feature 3: Epoxy Grouting -->
+<div class="bg-surface-container p-5 border border-outline-variant/50 relative">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 bg-surface-container-low border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="water_drop">water_drop</span>
+</div>
+<span class="font-label-caps text-label-caps text-tertiary bg-surface-dim px-2 py-0.5 border border-outline-variant">LITOKOL / KERAKOLL</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1.5">Двухкомпонентная эпоксидная затирка</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Швы не темнеют, не крошатся и абсолютно гидрофобны. Стойкость к бытовой химии, плесени и грибку на десятилетия. Колеровка эпоксида точно в тон поверхности камня.
+          </p>
+</div>
+<!-- Feature 4: Hidden Hatch & Plumbing -->
+<div class="bg-surface-container p-5 border border-outline-variant/50 relative">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 bg-surface-container-low border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="tune">tune</span>
+</div>
+<span class="font-label-caps text-label-caps text-tertiary bg-surface-dim px-2 py-0.5 border border-outline-variant">НЕВИДИМЫЙ ШОВ</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1.5">Скрытые люки и чистый сантехмонтаж</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Ревизионные люки нажимного типа с продолжением узора плиты и магнитными фиксаторами. Монтаж встроенных душевых трапов в один уровень с плоскостью пола без перепадов.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- INTERACTIVE MINI-CALCULATOR / ESTIMATOR WIDGET                            -->
+<!-- ========================================================================= -->
+<section class="px-space-md py-10 border-b border-outline-variant/40 bg-surface" id="calculator">
+<div class="max-w-lg mx-auto">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Онлайн смета</span>
+<span class="font-label-caps text-label-caps text-outline">02 / КАЛЬКУЛЯТОР</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 font-normal">
+        Ориентировочный расчет стоимости
+      </h2>
+<p class="font-body-sm text-body-sm text-tertiary mb-6">
+        Выберите формат работ и укажите площадь для предварительной калькуляции с материалами подготовки и высокоточным монтажом.
+      </p>
+<!-- Calculator Box -->
+<div class="bg-surface-container-low border border-outline-variant p-5 joint-border">
+<!-- Service Type Chips -->
+<label class="block font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-2.5">Тип объекта</label>
+<div class="grid grid-cols-2 gap-2 mb-5" id="type-selector">
+<button class="calc-type-btn active text-left p-2.5 border border-primary bg-primary/10 text-on-surface transition-all" onclick="selectType(this, 120000, 'Санузел под ключ')" type="button">
+<div class="font-label-md text-label-md text-primary">Санузел под ключ</div>
+<div class="text-[11px] text-tertiary">Полный цикл работ</div>
+</button>
+<button class="calc-type-btn text-left p-2.5 border border-outline-variant bg-surface-container text-tertiary hover:border-outline transition-all" onclick="selectType(this, 3500, 'Укладка плитки')" type="button">
+<div class="font-label-md text-label-md text-on-surface">Укладка плитки</div>
+<div class="text-[11px] text-tertiary">Стандартный формат</div>
+</button>
+<button class="calc-type-btn text-left p-2.5 border border-outline-variant bg-surface-container text-tertiary hover:border-outline transition-all" onclick="selectType(this, 5500, 'Крупный формат')" type="button">
+<div class="font-label-md text-label-md text-on-surface">Крупный формат</div>
+<div class="text-[11px] text-tertiary">Слэбы от 120 см</div>
+</button>
+<button class="calc-type-btn text-left p-2.5 border border-outline-variant bg-surface-container text-tertiary hover:border-outline transition-all" onclick="selectType(this, 45000, 'Фартук на кухню')" type="button">
+<div class="font-label-md text-label-md text-on-surface">Фартук на кухню</div>
+<div class="text-[11px] text-tertiary">С запилом розеток</div>
+</button>
+</div>
+<!-- Area Slider -->
+<div class="mb-5">
+<div class="flex justify-between items-center mb-2">
+<label class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider" for="area-slider">Примерная площадь (м²)</label>
+<span class="font-headline-sm text-headline-sm text-primary font-bold" id="area-val">18 м²</span>
+</div>
+<input class="w-full h-1.5 bg-surface-variant appearance-none cursor-pointer" id="area-slider" max="60" min="4" oninput="updateEstimate()" step="1" type="range" value="18"/>
+<div class="flex justify-between text-[11px] text-outline mt-1 font-mono">
+<span>4 м²</span>
+<span>25 м²</span>
+<span>60 м²</span>
+</div>
+</div>
+<!-- Add-ons Checkboxes -->
+<div class="space-y-2 mb-6 border-t border-outline-variant/60 pt-4">
+<label class="flex items-center justify-between text-body-sm text-on-surface cursor-pointer">
+<span class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded-none bg-surface-container border-outline text-primary focus:ring-0" id="check-miter" onchange="updateEstimate()" type="checkbox"/>
+<span>Запил углов под 45° (без уголков)</span>
+</span>
+<span class="text-xs text-primary font-mono">+1 800 ₽/м.п.</span>
+</label>
+<label class="flex items-center justify-between text-body-sm text-on-surface cursor-pointer">
+<span class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded-none bg-surface-container border-outline text-primary focus:ring-0" id="check-epoxy" onchange="updateEstimate()" type="checkbox"/>
+<span>Эпоксидная двухкомпонентная затирка</span>
+</span>
+<span class="text-xs text-primary font-mono">+850 ₽/м²</span>
+</label>
+<label class="flex items-center justify-between text-body-sm text-on-surface cursor-pointer">
+<span class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded-none bg-surface-container border-outline text-primary focus:ring-0" id="check-laser" onchange="updateEstimate()" type="checkbox"/>
+<span>Шлифовка стяжки &amp; гидроизоляция Knauf</span>
+</span>
+<span class="text-xs text-primary font-mono">+950 ₽/м²</span>
+</label>
+</div>
+<!-- Price Result Box -->
+<div class="bg-surface-dim border border-primary/30 p-4 mb-4">
+<div class="text-[11px] font-label-caps text-outline uppercase tracking-wider mb-1">Предварительная смета:</div>
+<div class="flex items-baseline justify-between">
+<div class="text-xl font-headline-md text-primary font-bold tracking-tight" id="total-price">
+              от 148 500 ₽
+            </div>
+<div class="text-[11px] text-tertiary">Фиксация в договоре</div>
+</div>
+<div class="text-[11px] text-outline mt-1 font-mono">Срок выполнения: ~ 12–18 рабочих дней</div>
+</div>
+<!-- Action CTAs -->
+<div class="grid grid-cols-2 gap-2">
+<a class="flex items-center justify-center gap-1.5 py-3 px-2 bg-[#25D366]/20 border border-[#25D366]/50 text-on-surface hover:bg-[#25D366]/30 transition text-label-sm font-label-sm uppercase tracking-wider" href="https://wa.me/79990000000?text=Здравствуйте!%20Интересует%20расчет%20укладки%20плитки" id="wa-btn" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-base text-[#25D366]" data-icon="chat">chat</span>
+<span>WhatsApp</span>
+</a>
+<a class="flex items-center justify-center gap-1.5 py-3 px-2 bg-[#229ED9]/20 border border-[#229ED9]/50 text-on-surface hover:bg-[#229ED9]/30 transition text-label-sm font-label-sm uppercase tracking-wider" href="https://t.me/ateliertile" id="tg-btn" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-base text-[#229ED9]" data-icon="send">send</span>
+<span>Telegram</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- PORTFOLIO SHOWCASE                                                        -->
+<!-- ========================================================================= -->
+<section class="px-space-md py-10 border-b border-outline-variant/40 bg-surface-container-lowest" id="portfolio">
+<div class="max-w-lg mx-auto">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Портфолио проектов</span>
+<span class="font-label-caps text-label-caps text-outline">03 / РАБОТЫ</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 font-normal">
+        Реализованные объекты премиум-класса
+      </h2>
+<p class="font-body-sm text-body-sm text-tertiary mb-6">
+        Каждый объект сдан с фотофиксацией скрытых работ и лазерным контролем плоскости по правилу 0.5 мм/2м.
+      </p>
+<!-- Portfolio Cards Stream -->
+<div class="space-y-6">
+<!-- Project 1 -->
+<div class="bg-surface-container border border-outline-variant/60 overflow-hidden group">
+<div class="relative aspect-[4/3] bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Interior luxury master bathroom in a contemporary penthouse. Dark charcoal slate large format tiles cover walls and floor seamlessly. A built-in vanity unit features honed nero marquina marble counter, brushed brass wall-mounted tapware, and a frameless glass shower enclosure. High contrast architectural illumination creates an intimate ambiance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu-H_n_u8T4o2a1H_a6Pb-CE-kOMN83dmmxmZCfYjN_9E5DjutvV5qF5gttKYTtxa_OwJTCdqraDrqIaOfFe6NAIL5OtCgHLHMzFqN1HZ1hfXyl1E8u5T5lVDAKbfMY27HxCnr8w9VyzkT8lC-gBehJZo5tV8Qt6FkDlRoKXgAlwiHpJIz-1QvD1PufB6Mj354F72wGunSZIGqhO_XeILedABpepcvo2SGyTJr_Veqbmj-_vtov2M1"/>
+<div class="absolute top-2.5 left-2.5 bg-surface-dim/85 backdrop-blur-md px-2.5 py-1 border border-outline-variant">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">ЖК «СЫТИНСКИЙ» • 14 М²</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 bg-surface-dim/90 px-2 py-1 border border-primary/50 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-xs" data-icon="architecture">architecture</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">ЗАПИЛ 45° &amp; СКРЫТЫЙ ТРАП</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-baseline mb-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Мастер-ванная в монолите</h3>
+<span class="font-label-caps text-label-caps text-outline">ФОРМАТ 1200×600</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary mb-3">
+              Полный цикл гидроизоляции, изготовление встроенных ниш с подсветкой и ювелирная стыковка итальянского керамогранита с паркетной доской без порогов.
+            </p>
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/40 text-[11px] text-tertiary font-mono">
+<span class="text-primary font-bold">Срок: 16 дней</span>
+<span>•</span>
+<span>Затирка: Kerakoll Fugabella</span>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="bg-surface-container border border-outline-variant/60 overflow-hidden group">
+<div class="relative aspect-[4/3] bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern architectural walk-in shower room with Calacatta Viola slab marble bookmatched on main feature wall. Seamless floor transition with concealed flush linear drain. Recessed architectural niche with micro-beveled mitered stone corners. Warm brass hardware contrasting with clean cool marble veining." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQhtHaeqnYFkZBuvamtoAwmGB_GMLiWzk2nsVUHQWK0zJG7kvjegp1mPGIdBmcoj5eyTfsAL8O6aDwrvhIDtL4jpoFp71dQ4PYTqqSXUqpW8nn7JAO0gtvEjFJLvcJeKm_NSCT4T0_uyVinEtITVxh0T98ZFcRqbIEiXc1-SNqo7hvVFP_BEEGX_-9Z_9xnhfmR3vGv5po-ltcnl4OF-l7zCM0J5QfDRxyRLLbV9ap9WYhoZyJq2QQ"/>
+<div class="absolute top-2.5 left-2.5 bg-surface-dim/85 backdrop-blur-md px-2.5 py-1 border border-outline-variant">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">КП «МИЛЛЕНИУМ ПАРК» • СВЫШЕ 25 М²</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 bg-surface-dim/90 px-2 py-1 border border-primary/50 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-xs" data-icon="photo_camera">photo_camera</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">BOOKMATCH СХОД ЖИЛЫ</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-baseline mb-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">СПА-санузел с бабочкой слэбов</h3>
+<span class="font-label-caps text-label-caps text-outline">ФОРМАТ 2800×1200</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary mb-3">
+              Подъем крупноформатных плит лебедкой, лазерный раскрой под сантехнические выводы и бесшовный монтаж подвесной мебели на монолитный каркас.
+            </p>
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/40 text-[11px] text-tertiary font-mono">
+<span class="text-primary font-bold">Срок: 24 дня</span>
+<span>•</span>
+<span>Шов: 1.0 мм эпоксид</span>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="bg-surface-container border border-outline-variant/60 overflow-hidden group">
+<div class="relative aspect-[4/3] bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist guest restroom with warm greige concrete-look porcelain tiles. Ultra-precise 45 degree external corner cuts around structural column. Built-in flush toilet cistern hidden behind a tiled access hatch with magnetic push-open mechanism. Soft recessed LED illumination beneath the cantilevered sink unit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBHE965GZlG4MNNg5wLhA-zyQJovQ0EogcaWwNFjD-hv92PFCj5TjQ4M4aiwx_YLj6ngiEqanRSRvr3CJ6mVD86V7hFacmYNOAWK_T7bRR6J7IwlBmBXaw37l4YMT2FoLY8UmXxXlSzeSam-MbrulzqHFVQ7mbaQdUEiradh3ztKw3eB9e8YzSkL_NinDPmnOZk82TkPD2CyvGFBC8HPwV6CvLQjTqTaZ4KOmQqT7bKrawLpUiTokR"/>
+<div class="absolute top-2.5 left-2.5 bg-surface-dim/85 backdrop-blur-md px-2.5 py-1 border border-outline-variant">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">ЖК «ПРАЙМ ПАРК» • 7 М²</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 bg-surface-dim/90 px-2 py-1 border border-primary/50 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-xs" data-icon="visibility_off">visibility_off</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">ЛЮК-НЕВИДИМКА</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-baseline mb-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Гостевой санузел с инсталляцией</h3>
+<span class="font-label-caps text-label-caps text-outline">ФОРМАТ 1200×600</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary mb-3">
+              Формирование единой плоскости короба инсталляции со скрытым ревизионным люком типа «Шагмастер», совпадающим с раскладкой плитки без подрезок.
+            </p>
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/40 text-[11px] text-tertiary font-mono">
+<span class="text-primary font-bold">Срок: 9 дней</span>
+<span>•</span>
+<span>Инженерный узел: Rehau</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- PROCESS & QUALITY STANDARDS                                               -->
+<!-- ========================================================================= -->
+<section class="px-space-md py-10 border-b border-outline-variant/40 bg-surface" id="process">
+<div class="max-w-lg mx-auto">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Регламент работ</span>
+<span class="font-label-caps text-label-caps text-outline">04 / ЭТАПЫ</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6 font-normal">
+        Инженерный подход от замера до сдачи
+      </h2>
+<div class="relative border-l border-outline-variant/70 ml-3 space-y-7">
+<!-- Step 1 -->
+<div class="relative pl-6">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-surface border-2 border-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-primary"></div>
+</div>
+<div class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-1">01. Замер &amp; Лазерная геометрия</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Оценка плоскостей и разметка</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Выезд мастера с лазерным 3D-нивелиром Leica. Проверка углов 90°, вертикалей, прочности стяжки и составление карты раскладки с минимизацией отходов.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="relative pl-6">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-surface border-2 border-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-primary"></div>
+</div>
+<div class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-1">02. Фиксированная смета</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Договор без скрытых доплат</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Согласование спецификации: объемы резов, погонаж запилов 45°, отверстий в керамограните и гидроизоляции. Цена закрепляется в официальном договоре.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="relative pl-6">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-surface border-2 border-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-primary"></div>
+</div>
+<div class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-1">03. Монтаж по СНиП и ГОСТ</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Немецкое и итальянское оборудование</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Плиткорезы с водяным охлаждением Montolit и Wandeli, пылеудаление Festool, нанесение клея методом двойного намазывания (гребенка в одну сторону) без пустот.
+          </p>
+</div>
+<!-- Step 4 -->
+<div class="relative pl-6">
+<div class="absolute -left-[9px] top-1 w-4 h-4 bg-surface border-2 border-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-primary"></div>
+</div>
+<div class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-1">04. Клининг &amp; Сдача объекта</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Гарантийный сертификат на 5 лет</h3>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+            Удаление эпоксидного налета специализированной химией Litonet, полировка фурнитуры, фотофиксация и подписание двухстороннего акта приема-передачи.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- ABOUT CRAFTSMAN SNIPPET & MESSENGERS                                      -->
+<!-- ========================================================================= -->
+<section class="px-space-md py-10 border-b border-outline-variant/40 bg-surface-container-lowest" id="craftsman">
+<div class="max-w-lg mx-auto">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Мастерская</span>
+<span class="font-label-caps text-label-caps text-outline">05 / ОБО МНЕ</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6 font-normal">
+        Персональная ответственность за результат
+      </h2>
+<!-- Craftsman Profile Card -->
+<div class="bg-surface-container border border-outline-variant p-5 mb-5 joint-border">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 bg-surface-container-high border border-primary/50 overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Editorial close portrait of a focused professional male tile setter craftsman in high-end graphite workwear. Dark architectural studio background with subtle warm brass lighting highlights. Confident, skilled artisan with experienced demeanor, reflecting precision and bespoke luxury construction standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbfKF8DsBetTMrsAn3AFxWPa6s2Qne46Jffc_iXwfJaSXmCa53Eaw74r62cm_vfd7xrIiv5ZI1UgbogX-FXz8Gcb79W70P5qC079Sk4_G7tWrzdBpaxBuJ1bdyD8_n2UK5txM3n8Dx7s91CKgCi0_B9Jz0IEtsniaNsx4XzTBgZTfqjU1xfec4Lv77l21myJsm21w2w_v71-TgoZQySEUljqgdrF2glHe68uB8BmaB79T2U1ikQp2n"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Артем Ковалев</h3>
+<div class="text-label-caps font-label-caps text-primary uppercase tracking-wider">Шеф-мастер • ATELIER STONE</div>
+<div class="text-xs text-tertiary mt-0.5">Опыт в премиальной отделке с 2012 года</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary leading-relaxed mb-4">
+          «Я не беру по 5 объектов одновременно. Веду каждый санузел лично: от калибровки плоскостей до финальной затирки швов. Работаю только по договору с гарантией неизменной цены и фиксированным графиком.»
+        </p>
+<!-- Stats Matrix -->
+<div class="grid grid-cols-3 gap-2 border-t border-b border-outline-variant/50 py-3 text-center mb-5 bg-surface-dim">
+<div>
+<div class="text-xl font-bold font-headline-sm text-primary">140+</div>
+<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Ванных сдано</div>
+</div>
+<div class="border-x border-outline-variant/50">
+<div class="text-xl font-bold font-headline-sm text-primary">0%</div>
+<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Рекламаций</div>
+</div>
+<div>
+<div class="text-xl font-bold font-headline-sm text-primary">5 ЛЕТ</div>
+<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Гарантия</div>
+</div>
+</div>
+<!-- Direct Messenger CTAs -->
+<div class="space-y-2">
+<a class="w-full flex items-center justify-between p-3 bg-surface-container-high border border-outline-variant hover:border-primary transition group" href="https://t.me/ateliertile" rel="noopener" target="_blank">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="send">send</span>
+<span class="font-label-md text-label-md text-on-surface">Написать напрямую в Telegram</span>
+</div>
+<span class="material-symbols-outlined text-outline text-lg group-hover:translate-x-0.5 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="w-full flex items-center justify-between p-3 bg-surface-container-high border border-outline-variant hover:border-primary transition group" href="https://wa.me/79990000000" rel="noopener" target="_blank">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="forum">forum</span>
+<span class="font-label-md text-label-md text-on-surface">Обсудить проект в WhatsApp</span>
+</div>
+<span class="material-symbols-outlined text-outline text-lg group-hover:translate-x-0.5 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="w-full flex items-center justify-between p-3 bg-primary-container text-surface-dim hover:bg-secondary transition font-label-md text-label-md uppercase tracking-wider" href="tel:+79990000000">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-xl" data-icon="phone_in_talk">phone_in_talk</span>
+<span>Позвонить: +7 (999) 000-00-00</span>
+</div>
+<span class="material-symbols-outlined text-lg" data-icon="call">call</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SEO TEXT ACCORDION SECTION                                                -->
+<!-- ========================================================================= -->
+<section class="px-space-md py-8 border-b border-outline-variant/40 bg-surface">
+<div class="max-w-lg mx-auto">
+<details class="group bg-surface-container-low border border-outline-variant/50 p-4 transition-all">
+<summary class="flex justify-between items-center cursor-pointer list-none font-label-md text-label-md text-on-surface">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="info">info</span>
+<span>Профессиональная укладка плитки в ванной комнате</span>
+</span>
+<span class="material-symbols-outlined text-outline text-lg transition-transform duration-300 group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="pt-4 mt-3 border-t border-outline-variant/30 text-body-sm text-tertiary space-y-2 leading-relaxed">
+<p>
+            Качественная <strong>укладка керамогранита в Москве и Московской области</strong> требует специализированного инструментария и точного соблюдения строительных нормативов. Монтаж крупноформатных плит размером 1200х600, 1600х800 и 3000х1000 мм не терпит компромиссов: отклонение плоскости основания не должно превышать 1 мм на 2 погонных метра.
+          </p>
+<p>
+            Мы выполняем <strong>запил углов под 45 градусов (фаска/усовка)</strong> на мокрорезах с лазерным наведением, что исключает сколы и позволяет сформировать монолитный эстетический кант. Заполнение швов двухкомпонентной <em>эпоксидной затиркой</em> обеспечивает пожизненную защиту от потемнения и грибка в зонах постоянного контакта с водой.
+          </p>
+<p>
+<strong>Ванная комната под ключ</strong> включает в себя монтаж сантехнических гребенок, установку скрытых инсталляций Geberit/Tece, устройство душевых поддонов строительного исполнения в строительной гидроизоляции и монтаж скрытых ревизионных люков под плитку.
+          </p>
+</div>
+</details>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- FOOTER                                                                    -->
+<!-- ========================================================================= -->
+<footer class="px-space-md py-8 text-center bg-surface-container-lowest border-b border-outline-variant/20">
+<div class="max-w-lg mx-auto flex flex-col items-center">
+<div class="font-display-hero-mobile text-headline-sm-mobile tracking-widest text-primary uppercase font-bold mb-1">ATELIER STONE</div>
+<p class="font-label-caps text-label-caps text-outline uppercase tracking-wider mb-4">БЕСКОМПРОМИССНОЕ КАЧЕСТВО С 2012 ГОДА</p>
+<div class="text-[12px] text-tertiary/70 font-mono">
+        Москва • Новая Рига • Рублево-Успенское • Выезд на замеры
+      </div>
+<div class="text-[11px] text-outline mt-3">
+        © 2025 ATELIER STONE. Все права защищены. Договор и гарантия 5 лет.
+      </div>
+</div>
+</footer>
+<!-- ========================================================================= -->
+<!-- BOTTOM NAV BAR (from Shared Components JSON)                              -->
+<!-- ========================================================================= -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-sm py-space-xs bg-surface-container-low/95 dark:bg-surface-container-low/95 backdrop-blur-md border-t border-outline-variant pb-safe" style="box-shadow: 0 16px 40px -8px rgba(0,0,0,0.7), 0 0 24px 0 rgba(197,160,89,0.08);">
+<!-- Tab 1: Portfolio -->
+<a class="flex flex-col items-center justify-center text-tertiary dark:text-tertiary py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#portfolio" onclick="setActiveNav(this)">
+<span class="material-symbols-outlined text-xl" data-icon="photo_library">photo_library</span>
+<span class="text-label-caps font-label-caps tracking-widest mt-0.5">Portfolio</span>
+</a>
+<!-- Tab 2: Services -->
+<a class="flex flex-col items-center justify-center text-tertiary dark:text-tertiary py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#process" onclick="setActiveNav(this)">
+<span class="material-symbols-outlined text-xl" data-icon="handyman">handyman</span>
+<span class="text-label-caps font-label-caps tracking-widest mt-0.5">Services</span>
+</a>
+<!-- Tab 3: Estimate (Active on landing) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary py-1 border-t-2 border-primary hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#calculator" onclick="setActiveNav(this)">
+<span class="material-symbols-outlined text-xl" data-icon="calculate">calculate</span>
+<span class="text-label-caps font-label-caps tracking-widest mt-0.5">Estimate</span>
+</a>
+<!-- Tab 4: Contact -->
+<a class="flex flex-col items-center justify-center text-tertiary dark:text-tertiary py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform" href="#craftsman" onclick="setActiveNav(this)">
+<span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
+<span class="text-label-caps font-label-caps tracking-widest mt-0.5">Contact</span>
+</a>
+</nav>
+<!-- ========================================================================= -->
+<!-- JAVASCRIPT: Interactive Calculator Logic & Navigation States              -->
+<!-- ========================================================================= -->
+<script>
+    let currentBaseRate = 120000;
+    let currentTypeLabel = 'Санузел под ключ';
+
+    function selectType(btn, rate, label) {
+      document.querySelectorAll('.calc-type-btn').forEach(b => {
+        b.classList.remove('border-primary', 'bg-primary/10', 'text-on-surface');
+        b.classList.add('border-outline-variant', 'bg-surface-container', 'text-tertiary');
+      });
+      btn.classList.remove('border-outline-variant', 'bg-surface-container', 'text-tertiary');
+      btn.classList.add('border-primary', 'bg-primary/10', 'text-on-surface');
+      currentBaseRate = rate;
+      currentTypeLabel = label;
+      updateEstimate();
+    }
+
+    function updateEstimate() {
+      const area = parseInt(document.getElementById('area-slider').value, 10);
+      document.getElementById('area-val').innerText = area + ' м²';
+
+      const isMiter = document.getElementById('check-miter').checked;
+      const isEpoxy = document.getElementById('check-epoxy').checked;
+      const isLaser = document.getElementById('check-laser').checked;
+
+      let total = 0;
+      if (currentBaseRate === 120000) {
+        // Full turnkey: base package + scale
+        total = currentBaseRate + (area * 3200);
+      } else if (currentBaseRate === 45000) {
+        // Kitchen backsplash flat base + precision
+        total = currentBaseRate + (area * 1800);
+      } else {
+        // Per m² works
+        total = currentBaseRate * area;
+      }
+
+      // Add-ons computation
+      if (isMiter) total += (area * 0.8) * 1800; // estimated miter run
+      if (isEpoxy) total += area * 850;
+      if (isLaser) total += area * 950;
+
+      const formatted = new Intl.NumberFormat('ru-RU').format(Math.round(total));
+      document.getElementById('total-price').innerText = 'от ' + formatted + ' ₽';
+
+      // Update Messengers dynamic message
+      const msg = encodeURIComponent(`Здравствуйте! Хочу заказать расчет: ${currentTypeLabel}, площадь ~${area} м², ориентировочная смета ${formatted} ₽.`);
+      document.getElementById('wa-btn').href = `https://wa.me/79990000000?text=${msg}`;
+      document.getElementById('tg-btn').href = `https://t.me/ateliertile?text=${msg}`;
+    }
+
+    function setActiveNav(element) {
+      const navLinks = element.parentElement.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.className = "flex flex-col items-center justify-center text-tertiary dark:text-tertiary py-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform";
+      });
+      element.className = "flex flex-col items-center justify-center text-primary dark:text-primary py-1 border-t-2 border-primary hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform";
+    }
+
+    // Run initial calc
+    updateEstimate();
+  </script>
+</body></html>

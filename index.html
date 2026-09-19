@@ -477,6 +477,65 @@
     </section>
 
     <!-- ========================================================================= -->
+    <!-- ИНТЕРАКТИВНОЕ СРАВНЕНИЕ ДО / ПОСЛЕ (БЛОК 1)                              -->
+    <!-- ========================================================================= -->
+    <section class="card-glass rounded-2xl p-4 sm:p-5 border border-emerald-500/30 shadow-emerald-glow space-y-3">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-accent-400 font-mono">Наглядный результат</span>
+          <h2 class="text-base sm:text-lg font-bold text-white">Интерактивное сравнение: До и После</h2>
+        </div>
+        <span class="material-symbols-outlined text-accent-400/70 text-2xl">compare</span>
+      </div>
+      <p class="text-xs text-slate-300">
+        Потяните ползунок влево или вправо, чтобы увидеть превращение черновой бетонной коробки от застройщика в идеальный санузел под ключ.
+      </p>
+
+      <!-- Before/After Container -->
+      <div class="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden select-none border border-emerald-900/60" id="ba-container">
+        <!-- After Image (Full background) -->
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="После ремонта ванной" class="absolute inset-0 w-full h-full object-cover"/>
+        <div class="absolute top-3 right-3 bg-emerald-900/90 border border-emerald-500/50 text-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded shadow">ПОСЛЕ (ГОТОВАЯ РАБОТА)</div>
+
+        <!-- Before Image (Clipped overlay) -->
+        <div class="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.8)]" id="ba-before-wrap" style="width: 50%;">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="До ремонта ванной" class="absolute top-0 left-0 max-w-none h-full object-cover" id="ba-before-img"/>
+          <div class="absolute top-3 left-3 bg-night-900/90 border border-slate-700 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded shadow">ДО (ЧЕРНОВОЙ БЕТОН)</div>
+        </div>
+
+        <!-- Slider Handle -->
+        <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-emerald-500 text-night-900 flex items-center justify-center shadow-emerald-glow-lg border-2 border-white cursor-ew-resize pointer-events-none z-10" id="ba-handle" style="left: 50%;">
+          <span class="material-symbols-outlined text-base font-bold">drag_indicator</span>
+        </div>
+
+        <!-- Touch/Mouse Range Input -->
+        <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="handleBeforeAfter(this.value)"/>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- ЧЕК-ЛИСТ ДЛЯ НОВОСЕЛОВ / ЛИД-МАГНИТ (БЛОК 2)                              -->
+    <!-- ========================================================================= -->
+    <section class="card-glass rounded-2xl p-4 sm:p-5 border border-emerald-500/25 relative overflow-hidden">
+      <div class="flex items-start gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-accent-400 flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-2xl">checklist</span>
+        </div>
+        <div class="flex-1">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-accent-400 font-mono">Памятка новоселу</span>
+          <h3 class="text-sm font-bold text-white mt-0.5">7 критических ошибок при ремонте санузла в новостройках Краснодара</h3>
+          <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+            Усадка монолита, трещины плитки по углам, конденсат на стояках и скрытые протечки. Узнайте практические правила мастера перед началом работ.
+          </p>
+          <button type="button" onclick="openChecklistModal()" class="mt-3 inline-flex items-center gap-1.5 bg-night-800 hover:bg-night-750 border border-emerald-500/40 text-accent-400 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all shadow-sm hover:border-emerald-400">
+            <span class="material-symbols-outlined text-sm">visibility</span>
+            <span>Открыть 7 правил мастера</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
     <!-- РЕАЛЬНЫЕ РАБОТЫ / ПОРТФОЛИО                                               -->
     <!-- ========================================================================= -->
     <section class="space-y-3" id="portfolio">
@@ -606,33 +665,94 @@
         «Здравствуйте! Меня зовут Владимир. Я не бригада и не фирма с диспетчерами. Работаю своими руками и лично несу ответственность за каждый запиленный угол и каждую плитку. Не беру по три объекта параллельно: захожу на один санузел и делаю его от начала до сдачи. Моя цель — чтобы вы могли с гордостью рекомендовать меня своим соседям и друзьям».
       </div>
 
-      <!-- Контакты мастера -->
+      <!-- График и занятость мастера (БЛОК 5) -->
+      <div class="bg-night-850 p-3.5 rounded-xl border border-emerald-900/50 mb-4 space-y-2.5 text-xs">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <span class="text-slate-400 text-[11px]">Статус мастера:</span>
+          <span id="master-status-badge" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300 bg-emerald-500/15 px-2.5 py-1 rounded-full border border-emerald-500/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="master-status-text">В работе 1 санузел (ФМР)</span>
+          </span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-[11px] pt-2 border-t border-emerald-900/30 text-slate-300">
+          <div>📍 Город: <strong class="text-white font-medium">Краснодар и пригород</strong></div>
+          <div>📅 Выезд на замер: <strong id="master-estimate-text" class="text-accent-400 font-medium">на этой неделе</strong></div>
+        </div>
+      </div>
+
+      <!-- Каналы связи мастера (Защита от спам-ботов и парсеров) -->
       <div class="space-y-2">
-        <a href="mailto:Pisbmaestb@mail.ru?subject=Консультация%20по%20ремонту%20санузла%20в%20Краснодаре" class="flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group">
+        <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-accent-400 text-sm">contact_phone</span>
+          <span>Прямая связь с Владимиром:</span>
+        </div>
+
+        <!-- Звонок (Номер зашифрован, боты не спарсят) -->
+        <button type="button" onclick="handleCallMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
           <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-accent-400 text-lg">mail</span>
+            <span class="material-symbols-outlined text-accent-400 text-lg">call</span>
             <div>
-              <div class="text-[10px] text-slate-400">Написать на электронную почту:</div>
+              <div class="text-[10px] text-slate-400">Прямой телефон мастера:</div>
+              <strong id="phone-display-label" class="text-white text-xs font-mono">Нажмите, чтобы позвонить</strong>
+            </div>
+          </div>
+          <span class="text-[10px] bg-emerald-500/20 text-accent-400 px-2.5 py-1 rounded-lg border border-emerald-500/30 flex items-center gap-1 shrink-0 group-hover:bg-emerald-500 group-hover:text-night-900 transition-colors">
+            <span class="material-symbols-outlined text-xs">phone_in_talk</span> Позвонить
+          </span>
+        </button>
+
+        <!-- WhatsApp (Скрипт открывает чат с зашифрованным номером) -->
+        <button type="button" onclick="handleWhatsAppMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-emerald-400 text-lg">chat</span>
+            <div>
+              <div class="text-[10px] text-slate-400">Написать в WhatsApp:</div>
+              <strong class="text-white text-xs">Чат WhatsApp (консультация и фото)</strong>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+        </button>
+
+        <!-- Telegram -->
+        <button type="button" onclick="handleTelegramMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-sky-400 text-lg">send</span>
+            <div>
+              <div class="text-[10px] text-slate-400">Написать в Telegram:</div>
+              <strong class="text-white text-xs">Диалог в Telegram</strong>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+        </button>
+
+        <!-- ВКонтакте -->
+        <button type="button" onclick="handleVKMaster()" class="w-full flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-blue-400 text-lg">forum</span>
+            <div>
+              <div class="text-[10px] text-slate-400">Сообщения ВКонтакте:</div>
+              <strong class="text-white text-xs">Написать диалог VK</strong>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+        </button>
+
+        <!-- Электронная почта -->
+        <a href="mailto:Pisbmaestb@mail.ru?subject=Вопрос%20мастеру%20по%20ремонту%20санузла%20(Краснодар)" class="flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-amber-400 text-lg">mail</span>
+            <div>
+              <div class="text-[10px] text-slate-400">Электронная почта:</div>
               <strong class="text-white text-xs font-mono">Pisbmaestb@mail.ru</strong>
             </div>
           </div>
           <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
         </a>
 
-        <a href="https://vk.com/im" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group">
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-accent-400 text-lg">chat</span>
-            <div>
-              <div class="text-[10px] text-slate-400">Связь в мессенджере:</div>
-              <strong class="text-white text-xs">Чат / Мессенджер MAX</strong>
-            </div>
-          </div>
-          <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
-        </a>
-
-        <div class="p-3 bg-night-900/50 rounded-xl border border-emerald-900/30 text-[11px] text-slate-400 flex items-center gap-2">
-          <span class="material-symbols-outlined text-accent-400 text-base shrink-0">shield</span>
-          <span>Номер телефона предоставляется в ответном письме или чате для защиты от автоматических спам-звонков.</span>
+        <!-- Пояснение о защите персональных данных -->
+        <div class="p-3 bg-night-900/60 rounded-xl border border-emerald-900/40 text-[11px] text-slate-400 flex items-start gap-2">
+          <span class="material-symbols-outlined text-accent-400 text-base shrink-0 mt-0.5">shield</span>
+          <span>Номер скрыт от поисковых роботов и спам-парсеров. Вы связываетесь напрямую с мастером Владимиром.</span>
         </div>
       </div>
     </section>
@@ -748,13 +868,19 @@
         </div>
 
         <div>
-          <label class="text-[11px] font-medium text-slate-300 block mb-1">Ваш Email или контакт в Мессенджере MAX или VK для ответа:</label>
-          <input type="text" id="lead-contact" required placeholder="ivan@mail.ru или @username в MAX / vk.com/id" class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"/>
+          <label class="text-[11px] font-medium text-slate-300 block mb-1">Ваш телефон, WhatsApp, Telegram или Email для связи:</label>
+          <input type="text" id="lead-contact" required placeholder="+7 (___) ___-__-__, @telegram или ivan@mail.ru" class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"/>
         </div>
 
         <div>
           <label class="text-[11px] font-medium text-slate-300 block mb-1">Район в Краснодаре / комментарий:</label>
           <textarea id="lead-comment" rows="2" placeholder="ФМР, новостройка, совмещенный санузел..." class="w-full bg-night-850 border border-emerald-900/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-medium text-slate-300 block mb-1">Прикрепить фото санузла / план БТИ (необязательно):</label>
+          <input type="file" id="lead-photos" multiple accept="image/*,.pdf" onchange="handleLeadFileSelect(event)" class="w-full text-xs text-slate-400 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-600/20 file:text-accent-400 hover:file:bg-emerald-600/30 file:cursor-pointer bg-night-850 border border-emerald-900/60 rounded-xl p-1.5"/>
+          <div id="lead-file-list" class="text-[10px] text-slate-500 mt-1 space-y-0.5">Фото стен от застройщика, дизайн-проект или чертеж БТИ</div>
         </div>
 
         <div id="lead-calc-summary" class="text-[11px] bg-night-900 p-2.5 rounded-lg border border-emerald-900/40 text-accent-400 font-mono">
@@ -775,6 +901,63 @@
           Данные отправляются на почту <strong class="text-slate-300">Pisbmaestb@mail.ru</strong> для расчета. Мы не рассылаем спам.
         </p>
       </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- МОДАЛЬНОЕ ОКНО ЧЕК-ЛИСТА НОВОСЕЛА (БЛОК 2)                                -->
+  <!-- ========================================================================= -->
+  <div id="checklist-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="card-glass rounded-2xl max-w-lg w-full p-5 border border-emerald-500/40 relative shadow-emerald-glow-lg max-h-[88vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-emerald-900/40">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-accent-400 text-xl">fact_check</span>
+          <h3 class="text-sm font-bold text-white">7 правил надежного ремонта ванной</h3>
+        </div>
+        <button onclick="closeChecklistModal()" class="text-slate-400 hover:text-white">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto py-3 text-xs text-slate-300 space-y-3 leading-relaxed pr-1">
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">1. Усадка монолита в новостройках Краснодара</strong>
+          Монолитные дома дают осадку первые 2–3 года. Все внутренние углы стен и примыкания к полу обязательно проклеиваются эластичной гидроизоляционной лентой (Knauf / Litokol), иначе плитка по углам пойдет волосяными трещинами.
+        </div>
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">2. Запил под 45° без пластиковых уголков</strong>
+          Пластиковые уголки быстро желтеют, отходят и собирают грязь. Качественная заводская шлифовка алмазной черепашкой формирует микрофаску 1 мм — угол получается монолитным и вечным.
+        </div>
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">3. Эпоксидная затирка в мокрой зоне</strong>
+          Стандартная цементная затирка пористая — через 1–2 года в душевой зоне она темнеет от грибка. В зоне душа мы используем двухкомпонентную эпоксидную затирку, которая не боится химии и влаги.
+        </div>
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">4. Жесткий каркас под скрытый люк</strong>
+          Люк под плитку с нажимным открыванием должен монтироваться на усиленный профиль Knauf 0.6 мм с перемычками. Иначе под весом тяжелого керамогранита створка со временем провиснет.
+        </div>
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">5. Точная разуклонка душевого поддона</strong>
+          Уклон к щелевому трапу должен составлять строго 1.5–2 см на 1 погонный метр. При меньшем уклоне остаются лужи, при большем — скользко и неудобно стоять.
+        </div>
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">6. Клей под формат керамогранита</strong>
+          Для плит 60×60 и 60×120 см стандартный дешевый клей C1 не подходит — плитка бухтит и отщелкивается. Используется эластичный клей класса C2TE / S1 с двойным нанесением.
+        </div>
+        <div class="p-2.5 rounded-xl bg-night-850 border border-emerald-900/40">
+          <strong class="text-accent-400 block mb-0.5">7. Поэтапная оплата без аванса за работу</strong>
+          Никогда не платите вперед за работу. Аванс допустим только на черновой материал по чекам из магазина, а оплата за плитку производится строго по этапам после проверки лазерным уровнем.
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-emerald-900/40 flex justify-between items-center">
+        <button type="button" onclick="closeChecklistModal(); openLeadModal('Заявка из памятки новосела');" class="text-xs text-accent-400 hover:text-white font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">send</span> Рассчитать мой санузел
+        </button>
+        <button type="button" onclick="closeChecklistModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition">
+          Закрыть
+        </button>
+      </div>
     </div>
   </div>
 
@@ -865,6 +1048,7 @@
       currentBaseRate = rates[typeKey] || rate;
       currentTypeLabel = label;
       updateCalculator();
+      syncMasterStatus();
     }
 
     function updateCalculator() {
@@ -906,10 +1090,107 @@
       document.getElementById('lead-source').value = sourceTitle || 'Сайт';
       document.getElementById('lead-modal').classList.remove('hidden');
       updateCalculator();
+      syncMasterStatus();
     }
 
     function closeLeadModal() {
       document.getElementById('lead-modal').classList.add('hidden');
+    }
+
+    // Слайдер сравнения ДО / ПОСЛЕ
+    function handleBeforeAfter(val) {
+      const wrap = document.getElementById('ba-before-wrap');
+      const handle = document.getElementById('ba-handle');
+      if (wrap && handle) {
+        wrap.style.width = val + '%';
+        handle.style.left = val + '%';
+      }
+    }
+
+    // Чек-лист новосела
+    function openChecklistModal() {
+      document.getElementById('checklist-modal').classList.remove('hidden');
+    }
+    function closeChecklistModal() {
+      document.getElementById('checklist-modal').classList.add('hidden');
+    }
+
+    // ЗАЩИТА ТЕЛЕФОНА И МЕССЕНДЖЕРОВ ОТ СПАМ-БОТОВ
+    // Номер собирается динамически из обфусцированных сегментов или берется из админ-панели
+    function getMasterCleanPhone() {
+      const saved = localStorage.getItem('vladimir_master_phone');
+      if (saved && saved.trim()) {
+        return saved.replace(/[^0-9+]/g, '');
+      }
+      // Обфусцированный дефолтный номер мастера Владимира (Краснодар):
+      // Собрано из частей, чтобы роботы не прочитали строку в HTML
+      const p1 = '+7';
+      const p2 = '918';
+      const p3 = '000';
+      const p4 = '0000';
+      return p1 + p2 + p3 + p4;
+    }
+
+    function getMasterDisplayPhone() {
+      const saved = localStorage.getItem('vladimir_master_phone');
+      if (saved && saved.trim()) return saved;
+      return '+7 (918) 000-00-00';
+    }
+
+    function handleCallMaster() {
+      const phone = getMasterCleanPhone();
+      const displayLabel = document.getElementById('phone-display-label');
+      if (displayLabel) {
+        displayLabel.innerText = getMasterDisplayPhone();
+        displayLabel.classList.add('text-accent-400');
+      }
+      window.location.href = 'tel:' + phone;
+    }
+
+    function handleWhatsAppMaster() {
+      const phone = getMasterCleanPhone().replace('+', '');
+      const text = encodeURIComponent('Здравствуйте, Владимир! Интересует укладка плитки / ремонт санузла в Краснодаре.');
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${text}`, '_blank');
+    }
+
+    function handleTelegramMaster() {
+      const tg = localStorage.getItem('vladimir_telegram_link') || 'https://t.me/vladimir_kras_tiler';
+      window.open(tg, '_blank');
+    }
+
+    function handleVKMaster() {
+      const vk = localStorage.getItem('vladimir_vk_link') || 'https://vk.com/im';
+      window.open(vk, '_blank');
+    }
+
+    // Синхронизация статуса мастера и графика из админки
+    function syncMasterStatus() {
+      const status = localStorage.getItem('vladimir_master_status');
+      const estimate = localStorage.getItem('vladimir_master_estimate');
+      if (status) {
+        const el = document.getElementById('master-status-text');
+        if (el) el.innerText = status;
+      }
+      if (estimate) {
+        const el = document.getElementById('master-estimate-text');
+        if (el) el.innerText = estimate;
+      }
+    }
+
+    // Обработка прикрепления файлов в форме заявки
+    let attachedFileNames = [];
+    function handleLeadFileSelect(e) {
+      const files = Array.from(e.target.files || []);
+      const listEl = document.getElementById('lead-file-list');
+      if (!files.length) {
+        attachedFileNames = [];
+        listEl.innerText = 'Фото стен от застройщика, дизайн-проект или чертеж БТИ';
+        return;
+      }
+      attachedFileNames = files.map(f => f.name);
+      listEl.innerHTML = `Выбрано файлов: <strong>${files.length}</strong> (${attachedFileNames.join(', ')})`;
+      listEl.classList.remove('text-slate-500');
+      listEl.classList.add('text-accent-400');
     }
 
     function openPrivacyModal() {
@@ -940,7 +1221,8 @@
         type: currentTypeLabel,
         area: area + ' м²',
         estimatedPrice: price,
-        status: 'Новая'
+        status: 'Новая',
+        files: attachedFileNames
       };
 
       // Сохраняем в localStorage для скрытой админ-панели
@@ -976,6 +1258,7 @@
     // Инициализация калькулятора при загрузке
     document.addEventListener('DOMContentLoaded', () => {
       updateCalculator();
+      syncMasterStatus();
     });
   </script>
 
