@@ -841,6 +841,10 @@
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       activeBtn.classList.add('active', 'border-emerald-500', 'text-white');
       activeBtn.classList.remove('border-transparent', 'text-slate-400');
+
+      if (tabId === 'photos') {
+        renderPortfolioAdmin();
+      }
     }
 
     // Загрузка и рендер заявок
