@@ -556,6 +556,7 @@
         </div>
       </div>
 
+      <div id="portfolio-cards" class="space-y-3">
       <!-- Объект 1 -->
       <div class="card-glass rounded-2xl overflow-hidden border border-emerald-900/40">
         <div class="h-48 sm:h-56 relative overflow-hidden bg-night-800">
@@ -650,6 +651,7 @@
             <p class="text-[11px] text-slate-300 mt-0.5">Работа разбивается на понятные этапы. Аванс требуется только на закупку черновых материалов по магазинным чекам. За саму работу вы рассчитываетесь после проверки каждого сданного этапа.</p>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -1038,6 +1040,7 @@
       syncMasterStatus();
       initBeforeAfter();
       syncSocialLinks();
+      loadLivePortfolio();
     }
 
     function updateCalculator() {
@@ -1082,6 +1085,7 @@
       syncMasterStatus();
       initBeforeAfter();
       syncSocialLinks();
+      loadLivePortfolio();
     }
 
     function closeLeadModal() {
@@ -1278,7 +1282,73 @@
       syncMasterStatus();
       initBeforeAfter();
       syncSocialLinks();
+      loadLivePortfolio();
     });
+  // Загрузка живого портфолио и фото До / После в реальном времени
+    async function loadLivePortfolio() {
+      let portfolioData = null;
+
+      // 1. Загрузка из API сервера
+      try {
+        const res = await fetch('/api/portfolio');
+        if (res.ok) {
+          portfolioData = await res.json();
+        }
+      } catch (e) {}
+
+      // 2. Fallback: localStorage
+      if (!portfolioData || !portfolioData.items || !portfolioData.items.length) {
+        try {
+          const saved = localStorage.getItem('vladimir_portfolio');
+          if (saved) portfolioData = JSON.parse(saved);
+        } catch (e) {}
+      }
+
+      // 3. Fallback: data/portfolio.json
+      if (!portfolioData || !portfolioData.items || !portfolioData.items.length) {
+        try {
+          const resp = await fetch('data/portfolio.json');
+          if (resp.ok) portfolioData = await resp.json();
+        } catch (e) {}
+      }
+
+      if (!portfolioData) return;
+
+      // Обновление фото слайдера До / После
+      if (portfolioData.ba_before) {
+        const beforeImg = document.querySelector('#ba-before-wrap img');
+        if (beforeImg) beforeImg.src = portfolioData.ba_before;
+      }
+      if (portfolioData.ba_after) {
+        const afterImg = document.querySelector('#ba-container > img');
+        if (afterImg) afterImg.src = portfolioData.ba_after;
+      }
+
+      // Обновление карточек работ
+      if (portfolioData.items && portfolioData.items.length) {
+        const container = document.getElementById('portfolio-cards');
+        if (container) {
+          container.innerHTML = portfolioData.items.map(item => `
+            <div class="card-glass rounded-2xl overflow-hidden border border-emerald-900/40">
+              <div class="h-48 sm:h-56 relative overflow-hidden bg-night-800">
+                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover"/>
+                <div class="absolute bottom-2.5 left-2.5 bg-night-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-emerald-500/30 text-[11px] font-semibold text-accent-400">
+                  ${item.location || 'г. Краснодар'}
+                </div>
+              </div>
+              <div class="p-4">
+                <h3 class="text-sm font-bold text-white mb-1">${item.title}</h3>
+                <p class="text-xs text-slate-300 mb-3 leading-relaxed">${item.description}</p>
+                <div class="flex items-center justify-between pt-2.5 border-t border-emerald-900/30 text-xs">
+                  <span class="text-slate-400">Срок: <strong class="text-white font-medium">${item.duration || '—'}</strong></span>
+                  <span class="text-accent-400 font-bold">Работа: ${item.price || '—'}</span>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+    }
   </script>
 
 </body>

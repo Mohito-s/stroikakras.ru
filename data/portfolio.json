@@ -1,0 +1,33 @@
+{
+  "ba_before": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
+  "ba_after": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80",
+  "items": [
+    {
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      "location": "ЖК «Панорама», г. Краснодар",
+      "title": "Санузел 4.2 м² с инсталляцией и нишами",
+      "description": "Керамогранит 60×120 см под мрамор, запил внешних углов под 45°, подсветка парящей ванны, эпоксидная затирка в душевой зоне.",
+      "duration": "14 дней",
+      "price": "74 000 ₽"
+    },
+    {
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=800&q=80",
+      "location": "ФМР, ул. Тургенева",
+      "title": "Душевая зона в строительном исполнении",
+      "description": "Формирование поддона с разуклонкой, монтаж щелевого трапа, укладка керамогранита с конвертным уклоном, гидроизоляция Knauf.",
+      "duration": "11 дней",
+      "price": "62 000 ₽"
+    },
+    {
+      "id": 3,
+      "image": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80",
+      "location": "ЖК «Европейский», ул. Кожевенная",
+      "title": "Раздельный санузел с мозаикой и коробами",
+      "description": "Облицовка стен плиткой 30×60 см, мозаичное панно, скрытые ревизионные люки под плитку с нажимным механизмом, теплый пол.",
+      "duration": "16 дней",
+      "price": "86 000 ₽"
+    }
+  ]
+}
