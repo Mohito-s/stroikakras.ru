@@ -30,7 +30,7 @@ function sendJSON(res, statusCode, data) {
 
 // Autonomous Email Dispatcher via local Postfix + OpenDKIM
 function sendLeadEmail(lead) {
-  const recipient = 'ot4izna@list.ru';
+  const recipient = 'Pisbmaestb@mail.ru';
   const from = 'noreply@stroikakras.ru';
   const subjectText = `Новая заявка: ${lead.name || 'Клиент'} (${lead.contact || 'контакт'})`;
   const subjectEncoded = `=?UTF-8?B?${Buffer.from(subjectText, 'utf-8').toString('base64')}?=`;
