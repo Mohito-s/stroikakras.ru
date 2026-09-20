@@ -6,6 +6,7 @@ const path = require('path');
 const PORT = process.env.PORT || 8088;
 const BASE_DIR = __dirname;
 const DATA_FILE = path.join(BASE_DIR, 'data', 'portfolio.json');
+const LEADS_FILE = path.join(BASE_DIR, 'data', 'leads.json');
 const UPLOADS_DIR = path.join(BASE_DIR, 'uploads');
 
 // Ensure directories exist
@@ -53,6 +54,24 @@ const server = http.createServer((req, res) => {
     }
   }
 
+  // 2. GET /api/leads (for admin)
+  if (req.method === 'GET' && url.pathname === '/api/leads') {
+    const authPass = url.searchParams.get('auth') || req.headers.authorization;
+    if (authPass !== 'vladimir2026') {
+      return sendJSON(res, 401, { error: 'Unauthorized' });
+    }
+    try {
+      if (fs.existsSync(LEADS_FILE)) {
+        const raw = fs.readFileSync(LEADS_FILE, 'utf-8');
+        return sendJSON(res, 200, JSON.parse(raw));
+      } else {
+        return sendJSON(res, 200, []);
+      }
+    } catch (err) {
+      return sendJSON(res, 500, { error: 'Failed to read leads: ' + err.message });
+    }
+  }
+
   // Read request body for POST endpoints
   if (req.method === 'POST') {
     let body = '';
@@ -72,13 +91,42 @@ const server = http.createServer((req, res) => {
         return sendJSON(res, 400, { error: 'Invalid JSON payload' });
       }
 
-      // Check admin auth
+      // Public endpoint: POST /api/lead (incoming client lead from site form)
+      if (url.pathname === '/api/lead') {
+        try {
+          const leadItem = {
+            id: parsed.id || Date.now(),
+            date: parsed.date || new Date().toLocaleString('ru-RU'),
+            name: parsed.name || 'Без имени',
+            contact: parsed.contact || '',
+            comment: parsed.comment || '',
+            source: parsed.source || 'Сайт',
+            type: parsed.type || '',
+            area: parsed.area || '',
+            estimatedPrice: parsed.estimatedPrice || '',
+            files: parsed.files || [],
+            status: 'Новая'
+          };
+          let leads = [];
+          if (fs.existsSync(LEADS_FILE)) {
+            try { leads = JSON.parse(fs.readFileSync(LEADS_FILE, 'utf-8')); } catch(e) { leads = []; }
+          }
+          leads.unshift(leadItem);
+          fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), 'utf-8');
+          console.log(`[LEAD RECEIVED] ${leadItem.name} (${leadItem.contact}) - ${leadItem.estimatedPrice}`);
+          return sendJSON(res, 200, { success: true, id: leadItem.id });
+        } catch (err) {
+          return sendJSON(res, 500, { error: 'Failed to record lead: ' + err.message });
+        }
+      }
+
+      // Admin endpoints require auth
       const authPass = parsed.auth || req.headers.authorization;
       if (authPass !== 'vladimir2026') {
         return sendJSON(res, 401, { error: 'Unauthorized: Invalid password' });
       }
 
-      // 2. POST /api/portfolio - save entire portfolio state
+      // 3. POST /api/portfolio - save entire portfolio state
       if (url.pathname === '/api/portfolio') {
         try {
           const payload = {
@@ -94,7 +142,7 @@ const server = http.createServer((req, res) => {
         }
       }
 
-      // 3. POST /api/upload - upload base64 image file
+      // 4. POST /api/upload - upload base64 image file
       if (url.pathname === '/api/upload') {
         try {
           const dataUri = parsed.data || '';
@@ -148,5 +196,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Portfolio API server running on port ${PORT}`);
+  console.log(`Portfolio & Lead API server running on port ${PORT}`);
 });
