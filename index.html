@@ -130,6 +130,34 @@
       transform: scale(1.15);
     }
 
+        /* Rock-solid mobile bottom dock */
+    .mobile-bottom-dock {
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 9999 !important;
+      transform: translateZ(0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      will-change: transform !important;
+      padding-bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+      background: rgba(7, 12, 10, 0.96) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-top: 1px solid rgba(16, 185, 129, 0.25) !important;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    /* Fix mobile viewport redraw bug for fixed elements */
+    @media (max-width: 768px) {
+      .blueprint-bg {
+        background-attachment: scroll !important;
+      }
+    }
+
     /* Safe bottom padding: only on mobile screens where bottom dock is present */
     @media (max-width: 767px) {
       .pb-safe {
@@ -802,29 +830,34 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- МОБИЛЬНЫЙ НИЖНИЙ НАВИГАЦИОННЫЙ БАР (СТРОГО В ШИРИНУ БЛОКА, СКРЫТ НА ПК)  -->
+    <!-- ========================================================================= -->
+  <!-- МОБИЛЬНЫЙ НИЖНИЙ НАВИГАЦИОННЫЙ БАР (СТАТИЧНО ЗАКРЕПЛЕН, БЕЗ СДВИГОВ И ПРЫЖКОВ)-->
   <!-- ========================================================================= -->
-  <div class="fixed bottom-0 left-0 w-full z-40 flex justify-center pointer-events-none sm:hidden">
-    <nav class="w-full max-w-2xl bg-night-900/95 backdrop-blur-lg border-t border-emerald-900/50 px-3 py-2 flex justify-around items-center pointer-events-auto shadow-emerald-glow">
-      <a href="#services" class="flex flex-col items-center text-slate-400 hover:text-accent-400 text-[10px] font-medium transition-colors">
-        <span class="material-symbols-outlined text-xl">handyman</span>
-        <span>Услуги</span>
-      </a>
-      <a href="#calculator" class="flex flex-col items-center text-accent-400 font-bold text-[10px] transition-colors">
-        <span class="material-symbols-outlined text-xl">calculate</span>
-        <span>Цены</span>
-      </a>
-      <a href="#portfolio" class="flex flex-col items-center text-slate-400 hover:text-accent-400 text-[10px] font-medium transition-colors">
-        <span class="material-symbols-outlined text-xl">photo_library</span>
-        <span>Работы</span>
-      </a>
-      <a href="#about" class="flex flex-col items-center text-slate-400 hover:text-accent-400 text-[10px] font-medium transition-colors">
-        <span class="material-symbols-outlined text-xl">person</span>
-        <span>О мастере</span>
-      </a>
-      <button onclick="openLeadModal('Кнопка связи в меню')" class="flex flex-col items-center text-slate-400 hover:text-accent-400 text-[10px] font-medium transition-colors">
-        <span class="material-symbols-outlined text-xl">send</span>
-        <span>Заявка</span>
+  <div class="mobile-bottom-dock flex justify-center sm:hidden">
+    <nav class="w-full max-w-2xl px-2 pt-1 flex justify-around items-center">
+      <button type="button" onclick="scrollToSection('services')" class="flex flex-col items-center justify-center py-1 px-2.5 text-slate-400 hover:text-accent-400 active:text-accent-400 text-[10px] font-medium transition-colors select-none">
+        <span class="material-symbols-outlined text-xl pointer-events-none">handyman</span>
+        <span class="mt-0.5 pointer-events-none">Услуги</span>
+      </button>
+
+      <button type="button" onclick="scrollToSection('calculator')" class="flex flex-col items-center justify-center py-1 px-2.5 text-accent-400 active:text-accent-300 text-[10px] font-bold transition-colors select-none">
+        <span class="material-symbols-outlined text-xl pointer-events-none">calculate</span>
+        <span class="mt-0.5 pointer-events-none">Цены</span>
+      </button>
+
+      <button type="button" onclick="scrollToSection('portfolio')" class="flex flex-col items-center justify-center py-1 px-2.5 text-slate-400 hover:text-accent-400 active:text-accent-400 text-[10px] font-medium transition-colors select-none">
+        <span class="material-symbols-outlined text-xl pointer-events-none">photo_library</span>
+        <span class="mt-0.5 pointer-events-none">Работы</span>
+      </button>
+
+      <button type="button" onclick="scrollToSection('about')" class="flex flex-col items-center justify-center py-1 px-2.5 text-slate-400 hover:text-accent-400 active:text-accent-400 text-[10px] font-medium transition-colors select-none">
+        <span class="material-symbols-outlined text-xl pointer-events-none">person</span>
+        <span class="mt-0.5 pointer-events-none">О мастере</span>
+      </button>
+
+      <button type="button" onclick="openLeadModal('Кнопка связи в меню')" class="flex flex-col items-center justify-center py-1 px-2.5 text-slate-400 hover:text-accent-400 active:text-accent-400 text-[10px] font-medium transition-colors select-none">
+        <span class="material-symbols-outlined text-xl pointer-events-none">send</span>
+        <span class="mt-0.5 pointer-events-none">Заявка</span>
       </button>
     </nav>
   </div>
@@ -1078,6 +1111,20 @@
     }
 
     // Управление модальным окном
+    // Плавный скролл к секциям без сбоя viewport на iPhone/Android
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const headerOffset = 64;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+
     function openLeadModal(sourceTitle) {
       document.getElementById('lead-source').value = sourceTitle || 'Сайт';
       document.getElementById('lead-modal').classList.remove('hidden');
