@@ -2,6 +2,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
 
 const PORT = process.env.PORT || 8088;
 const BASE_DIR = __dirname;
@@ -25,6 +26,61 @@ function sendJSON(res, statusCode, data) {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   });
   res.end(JSON.stringify(data));
+}
+
+// Autonomous Email Dispatcher via local Postfix + OpenDKIM
+function sendLeadEmail(lead) {
+  const recipient = 'ot4izna@list.ru';
+  const from = 'noreply@stroikakras.ru';
+  const subjectText = `Новая заявка: ${lead.name || 'Клиент'} (${lead.contact || 'контакт'})`;
+  const subjectEncoded = `=?UTF-8?B?${Buffer.from(subjectText, 'utf-8').toString('base64')}?=`;
+  const senderEncoded = `=?UTF-8?B?${Buffer.from('Ремонт Крас').toString('base64')}?=`;
+
+  const lines = [
+    `Новая заявка на расчет / ремонт с сайта stroikakras.ru:`,
+    `======================================================`,
+    `Клиент:               ${lead.name || 'Не указано'}`,
+    `Телефон / Email:      ${lead.contact || 'Не указано'}`,
+    `Вид работ:            ${lead.type || 'Не указано'}`,
+    `Площадь помещения:    ${lead.area ? lead.area + ' м²' : 'Не указано'}`,
+    `Ориентировочная цена: ${lead.estimatedPrice || 'Не указано'}`,
+    `Комментарий / детали: ${lead.comment || 'Не указано'}`,
+    `Источник формы:       ${lead.source || 'Главный калькулятор'}`,
+    `Дата и время заявки:  ${lead.date || new Date().toLocaleString('ru-RU')}`,
+    `ID заявки:            #${lead.id}`,
+    `======================================================`,
+    ``,
+    `Письмо автоматически отправлено почтовым сервером mail.stroikakras.ru`
+  ];
+
+  const headers = [
+    `From: ${senderEncoded} <${from}>`,
+    `To: <${recipient}>`,
+    `Subject: ${subjectEncoded}`,
+    `Date: ${new Date().toUTCString()}`,
+    `Message-ID: <lead-${lead.id}.${Date.now()}@stroikakras.ru>`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=UTF-8`,
+    `Content-Transfer-Encoding: 8bit`,
+    ``,
+    lines.join('\r\n')
+  ].join('\r\n');
+
+  try {
+    const proc = spawn('/usr/sbin/sendmail', ['-t', '-i', '-f', from]);
+    proc.stdin.write(headers);
+    proc.stdin.end();
+
+    proc.on('error', (err) => {
+      console.error('[SENDMAIL ERROR]', err.message);
+    });
+
+    proc.on('close', (code) => {
+      console.log(`[SENDMAIL DISPATCHED] lead #${lead.id}, exit code: ${code}`);
+    });
+  } catch (e) {
+    console.error('[SENDMAIL SPAWN ERROR]', e.message);
+  }
 }
 
 const server = http.createServer((req, res) => {
@@ -114,6 +170,10 @@ const server = http.createServer((req, res) => {
           leads.unshift(leadItem);
           fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), 'utf-8');
           console.log(`[LEAD RECEIVED] ${leadItem.name} (${leadItem.contact}) - ${leadItem.estimatedPrice}`);
+          
+          // Dispatch autonomous email notification via local Postfix
+          sendLeadEmail(leadItem);
+
           return sendJSON(res, 200, { success: true, id: leadItem.id });
         } catch (err) {
           return sendJSON(res, 500, { error: 'Failed to record lead: ' + err.message });
