@@ -475,9 +475,9 @@
             Отправить расчет на почту
           </button>
           
-          <a id="max-messenger-btn" href="https://vk.com/im" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-1.5 bg-night-700 hover:bg-night-650 border border-emerald-500/40 text-accent-400 font-bold text-xs py-3 px-4 rounded-xl transition-all">
+          <a id="max-messenger-btn" href="https://max.ru/" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-1.5 bg-night-700 hover:bg-night-650 border border-emerald-500/40 text-accent-400 font-bold text-xs py-3 px-4 rounded-xl transition-all">
             <span class="material-symbols-outlined text-base">chat</span>
-            Мессенджер MAX
+            Мессенджер MAX (max.ru)
           </a>
         </div>
       </div>
@@ -709,32 +709,32 @@
         </a>
 
         <!-- 2. ВКонтакте (VK) -->
-        <button type="button" onclick="handleVKMaster()" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+        <a id="master-vk-link" href="https://vk.com/im" target="_blank" rel="noopener" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 shrink-0">
               <span class="material-symbols-outlined text-base">forum</span>
             </div>
             <div>
-              <div class="text-[10px] text-slate-400">ВКонтакте:</div>
-              <strong class="text-white text-xs">Написать в диалог VK</strong>
+              <div class="text-[10px] text-slate-400">ВКонтакте (VK):</div>
+              <strong class="text-white text-xs">Диалог ВКонтакте (vk.com/im)</strong>
             </div>
           </div>
           <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
-        </button>
+        </a>
 
         <!-- 3. Мессенджер MAX -->
-        <button type="button" onclick="handleMAXMaster()" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
+        <a id="master-max-link" href="https://max.ru/" target="_blank" rel="noopener" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-night-800 hover:bg-night-750 border border-emerald-500/30 text-xs text-slate-200 transition group text-left">
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
               <span class="material-symbols-outlined text-base">chat</span>
             </div>
             <div>
               <div class="text-[10px] text-slate-400">Мессенджер MAX:</div>
-              <strong class="text-white text-xs">Написать в Мессенджер MAX</strong>
+              <strong class="text-white text-xs">Чат в Мессенджере MAX (max.ru)</strong>
             </div>
           </div>
           <span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
-        </button>
+        </a>
 
         <!-- Пояснение о защите персональных данных -->
         <div class="p-3 bg-night-900/60 rounded-xl border border-emerald-900/40 text-[11px] text-slate-400 flex items-start gap-2">
@@ -1037,6 +1037,7 @@
       updateCalculator();
       syncMasterStatus();
       initBeforeAfter();
+      syncSocialLinks();
     }
 
     function updateCalculator() {
@@ -1080,6 +1081,7 @@
       updateCalculator();
       syncMasterStatus();
       initBeforeAfter();
+      syncSocialLinks();
     }
 
     function closeLeadModal() {
@@ -1153,14 +1155,28 @@
       document.getElementById('checklist-modal').classList.add('hidden');
     }
 
-    // ПЕРЕХОД В КАНАЛЫ СВЯЗИ (VK И MAX)
+    // КАНАЛЫ СВЯЗИ (VK И MAX): Ссылки по умолчанию https://max.ru/ и https://vk.com/im
+    function syncSocialLinks() {
+      const maxLink = localStorage.getItem('vladimir_max_link') || 'https://max.ru/';
+      const vkLink = localStorage.getItem('vladimir_vk_link') || 'https://vk.com/im';
+
+      const btnCalcMax = document.getElementById('max-messenger-btn');
+      if (btnCalcMax) btnCalcMax.href = maxLink;
+
+      const linkMasterMax = document.getElementById('master-max-link');
+      if (linkMasterMax) linkMasterMax.href = maxLink;
+
+      const linkMasterVk = document.getElementById('master-vk-link');
+      if (linkMasterVk) linkMasterVk.href = vkLink;
+    }
+
     function handleVKMaster() {
       const vk = localStorage.getItem('vladimir_vk_link') || 'https://vk.com/im';
       window.open(vk, '_blank');
     }
 
     function handleMAXMaster() {
-      const maxLink = localStorage.getItem('vladimir_max_link') || 'https://max.im';
+      const maxLink = localStorage.getItem('vladimir_max_link') || 'https://max.ru/';
       window.open(maxLink, '_blank');
     }
 
@@ -1261,6 +1277,7 @@
       updateCalculator();
       syncMasterStatus();
       initBeforeAfter();
+      syncSocialLinks();
     });
   </script>
 
