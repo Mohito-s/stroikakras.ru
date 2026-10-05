@@ -91,12 +91,12 @@ npx serve .
 ## 📋 Changelog
 
 ### v1.0.0 (2026-10-05)
+- Обновил ридми
 - Delete all content from README.md
 - Обновил ридми
 - switch lead notifications and public contact email to brother's email Pisbmaestb@mail.ru
 - integrate autonomous postfix email notification for incoming leads
 - set master email to ot4izna@list.ru and wire up server-side lead persistence
-- lock bottom navigation bar with hardware-accelerated dock and JS scroll to prevent jumping
 
 ---
 
@@ -120,4 +120,3 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 <div align="center">
   <sub>Built with ❤️ using <a href="https://github.com/Mohito-s/RepoHero">RepoHero</a> • Powered by Google Gemini 3.8</sub>
 </div>
-
